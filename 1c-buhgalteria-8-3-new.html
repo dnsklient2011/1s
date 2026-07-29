@@ -567,7 +567,7 @@ function Correct_Position() {
   .w3-sidebar.w3-theme-d4 {
     background: var(--night-2) !important;
     border: 0 !important;
-    box-shadow: 0 12px 30px rgba(9, 14, 153, 0.18) !important;
+    box-shadow: 0 8px 24px rgba(9, 14, 153, 0.18) !important;
   }
   #nav7.site-nav,
   #nav7 {
@@ -591,7 +591,7 @@ function Correct_Position() {
   #nav7 > li.menu_s_podnav {
     list-style: none !important;
     float: none !important;
-    display: block !important; /* critical: not flex — dropdowns are absolute children */
+    display: block !important;
     flex: 1 1 0 !important;
     width: auto !important;
     min-width: 0 !important;
@@ -608,16 +608,18 @@ function Correct_Position() {
     justify-content: center !important;
     gap: 8px;
     width: 100% !important;
+    height: 100% !important;
     margin: 0 !important;
-    padding: 14px 10px !important;
+    padding: 13px 12px !important;
     border-radius: 0 !important;
-    border-right: 1px solid rgba(255,255,255,0.08) !important;
+    border-right: 1px solid rgba(255,255,255,0.1) !important;
+    border-bottom: 3px solid transparent !important;
     white-space: nowrap !important;
     text-align: center !important;
     box-sizing: border-box !important;
-    color: rgba(255,255,255,0.92) !important;
-    font-weight: 650 !important;
-    font-size: 13.5px !important;
+    color: rgba(255,255,255,0.94) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
     letter-spacing: -0.01em;
     line-height: 1.2 !important;
     background: transparent !important;
@@ -627,18 +629,29 @@ function Correct_Position() {
     border-right: 0 !important;
   }
   #nav7 > li:hover > a.menu,
-  #nav7 > li:hover > a.site-nav__link {
-    background: rgba(39,187,241,0.14) !important;
+  #nav7 > li:hover > a.site-nav__link,
+  #nav7 > li:focus-within > a.menu,
+  #nav7 > li:focus-within > a.site-nav__link {
+    background: rgba(39,187,241,0.16) !important;
     color: #fff !important;
+    border-bottom-color: var(--amber) !important;
+  }
+  #nav7 > li.site-nav__phone {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
   }
   #nav7 > li.site-nav__phone > a,
-  #nav7 > li.menu:first-child > a {
+  #nav7 > li.menu.site-nav__phone > a {
     color: var(--amber) !important;
     font-weight: 800 !important;
-    background: rgba(39,187,241,0.06) !important;
+    background: rgba(39,187,241,0.08) !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    gap: 6px;
   }
   #nav7 > li.site-nav__phone:hover > a {
-    color: var(--amber) !important;
+    color: #fff !important;
+    background: rgba(39,187,241,0.22) !important;
   }
   #nav7 .site-nav__link--phone .material-icons {
     font-size: 18px !important;
@@ -664,17 +677,19 @@ function Correct_Position() {
     top: 100% !important;
     left: 0 !important;
     right: auto !important;
-    min-width: min(920px, 92vw);
-    max-width: min(1100px, 96vw);
-    max-height: min(72vh, 640px);
+    width: min(920px, 94vw) !important;
+    min-width: min(640px, 94vw) !important;
+    max-width: min(980px, 96vw) !important;
+    max-height: min(70vh, 520px);
     overflow-x: hidden !important;
     overflow-y: auto !important;
     margin: 0 !important;
-    padding: 16px 18px !important;
+    padding: 18px 20px !important;
     background: #fff !important;
     border: 1px solid var(--line) !important;
+    border-top: 3px solid var(--amber) !important;
     border-radius: 0 0 14px 14px !important;
-    box-shadow: 0 18px 40px rgba(9, 14, 153, 0.16) !important;
+    box-shadow: 0 18px 40px rgba(9, 14, 153, 0.18) !important;
     color: var(--ink) !important;
     z-index: 400 !important;
     text-align: left !important;
@@ -687,12 +702,18 @@ function Correct_Position() {
   #nav7 > li:hover > div.podmenu_s_podnav,
   #nav7 > li:focus-within > div.podmenu,
   #nav7 > li:focus-within > div.podmenu_s_podnav {
-    display: block !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 22px;
+    align-content: start;
   }
-  /* Keep panel open when moving to it; avoid clipping by ancestors */
-  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav {
-    min-width: min(720px, 92vw);
-    padding: 10px 12px !important;
+  #nav7 > li > div.podmenu:has(> ul:only-child),
+  #nav7 > li:hover > div.podmenu:has(> ul:only-child),
+  #nav7 > li:focus-within > div.podmenu:has(> ul:only-child) {
+    grid-template-columns: 1fr !important;
+    width: max(280px, 100%) !important;
+    min-width: min(340px, 92vw) !important;
+    max-width: min(420px, 94vw) !important;
   }
   /* Last items: open leftward so panel stays on screen */
   #nav7 > li:nth-last-child(-n+2) > div.podmenu,
@@ -701,37 +722,35 @@ function Correct_Position() {
     right: 0 !important;
   }
 
-  /* Mega-menu columns */
-  #nav7 > li > div.podmenu::after {
-    content: "";
-    display: table;
-    clear: both;
+  /* Mega-menu columns — kill legacy floats + w3 clearfix pseudo-elements */
+  #nav7 > li > div.podmenu::before,
+  #nav7 > li > div.podmenu::after,
+  #nav7 > li > div.podmenu_s_podnav::before,
+  #nav7 > li > div.podmenu_s_podnav::after {
+    content: none !important;
+    display: none !important;
   }
   #nav7 ul.left-podmenu,
-  #nav7 ul.right-podmenu {
-    float: left !important;
-    width: 48% !important;
-    margin: 0 1% 12px !important;
-    padding: 0 !important;
-    list-style: none !important;
-    background: transparent !important;
-  }
-  #nav7 > li > div.podmenu_s_podnav > ul.left-podmenu {
+  #nav7 ul.right-podmenu,
+  #nav7 > li > div.podmenu > ul {
     float: none !important;
-    width: 40% !important;
-    max-width: 320px;
+    width: 100% !important;
+    max-width: none !important;
     margin: 0 !important;
     padding: 0 !important;
     list-style: none !important;
-    position: relative !important;
+    background: transparent !important;
+    display: block !important;
   }
   #nav7 .p3 {
-    color: var(--ink) !important;
+    color: var(--night) !important;
     font-family: var(--display) !important;
     font-weight: 700 !important;
     font-size: 13px !important;
-    margin: 4px 0 8px !important;
+    margin: 0 0 8px !important;
+    padding: 0 2px 6px !important;
     text-align: left !important;
+    border-bottom: 1px solid var(--line);
   }
 
   /* Dropdown links — do NOT inherit white top-bar link color */
@@ -740,14 +759,14 @@ function Correct_Position() {
   #nav7 li.podmenu > a {
     display: block !important;
     width: auto !important;
-    padding: 7px 10px !important;
+    padding: 6px 8px !important;
     margin: 0 !important;
     border: 0 !important;
     border-radius: 8px !important;
     background: transparent !important;
     color: var(--ink) !important;
     font-weight: 500 !important;
-    font-size: 13.5px !important;
+    font-size: 13px !important;
     line-height: 1.35 !important;
     text-align: left !important;
     white-space: normal !important;
@@ -756,8 +775,8 @@ function Correct_Position() {
   }
   #nav7 > li > div a:hover,
   #nav7 li.podmenu:hover > a {
-    background: #f0f3fb !important;
-    color: var(--ink) !important;
+    background: #eef1fb !important;
+    color: var(--night) !important;
     text-decoration: none !important;
   }
   #nav7 ul li.podmenu,
@@ -774,65 +793,156 @@ function Correct_Position() {
     background: transparent !important;
   }
 
-  /* Nested flyout for industry solutions */
+  /* Nested flyout for industry / ITS — two-pane panel like 1c-center.net */
+  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav {
+    min-width: min(720px, 94vw) !important;
+    max-width: min(880px, 96vw) !important;
+    width: min(820px, 94vw) !important;
+    max-height: min(72vh, 560px) !important;
+    padding: 12px 14px !important;
+    grid-template-columns: none !important;
+    overflow: hidden !important;
+  }
+  #nav7 > li:hover > div.podmenu_s_podnav,
+  #nav7 > li:focus-within > div.podmenu_s_podnav {
+    display: block !important;
+    grid-template-columns: none !important;
+  }
+  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav > ul.left-podmenu {
+    float: none !important;
+    width: 38% !important;
+    max-width: 300px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    position: static !important;
+    z-index: 1;
+  }
+  /* Flyouts must position against the panel, not each category row */
+  #nav7 > li.menu_s_podnav li.podmenu {
+    position: static !important;
+  }
+  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav {
+    position: absolute !important;
+  }
+  #nav7 > li.menu_s_podnav li.podmenu > a.podmenu {
+    position: relative;
+  }
+  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav > ul.left-podmenu > li.podmenu > a.podmenu {
+    padding-right: 22px !important;
+  }
+  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav > ul.left-podmenu > li.podmenu > a.podmenu::after {
+    content: "›";
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav > ul.left-podmenu > li.podmenu:hover > a.podmenu,
+  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav > ul.left-podmenu:not(:has(> li.podmenu:hover)) > li.podmenu:first-child > a.podmenu {
+    background: var(--night) !important;
+    color: #fff !important;
+  }
+  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav > ul.left-podmenu > li.podmenu:hover > a.podmenu::after,
+  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav > ul.left-podmenu:not(:has(> li.podmenu:hover)) > li.podmenu:first-child > a.podmenu::after {
+    color: var(--amber);
+  }
   #nav7 li.podmenu ul.right-podmenu_page {
     display: none !important;
     position: absolute !important;
-    left: calc(100% + 6px) !important;
-    top: 0 !important;
-    width: min(420px, 55vw) !important;
-    max-height: min(68vh, 560px) !important;
+    left: 40% !important;
+    right: 12px !important;
+    top: 12px !important;
+    bottom: 12px !important;
+    width: auto !important;
+    max-height: none !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     margin: 0 !important;
-    padding: 8px !important;
+    padding: 8px 10px !important;
     list-style: none !important;
-    background: #fff !important;
+    background: #f7f9fd !important;
     border: 1px solid var(--line) !important;
     border-radius: 12px !important;
-    box-shadow: 0 16px 36px rgba(9, 14, 153, 0.14) !important;
-    z-index: 410 !important;
+    box-shadow: none !important;
+    z-index: 2 !important;
+    box-sizing: border-box !important;
   }
-  #nav7 li.podmenu:hover > ul.right-podmenu_page {
+  #nav7 li.podmenu:hover > ul.right-podmenu_page,
+  #nav7 > li.menu_s_podnav:hover > div.podmenu_s_podnav > ul.left-podmenu:not(:has(> li.podmenu:hover)) > li.podmenu:first-child > ul.right-podmenu_page {
     display: block !important;
   }
-  /* Inside industry panel: category list left, flyout overlays right */
-  #nav7 > li.menu_s_podnav > div.podmenu_s_podnav {
-    overflow: visible !important;
+  #nav7 li.podmenu ul.right-podmenu_page > li.podmenu > a {
+    padding: 7px 10px !important;
+  }
+  #nav7 li.podmenu ul.right-podmenu_page > li.podmenu > a::after {
+    content: none !important;
   }
 
   @media (max-width: 1100px) {
     #nav7 > li > a.menu,
     #nav7 > li > a.site-nav__link {
-      font-size: 12.5px !important;
-      padding: 12px 6px !important;
+      font-size: 13px !important;
+      padding: 12px 8px !important;
     }
-    #nav7 ul.left-podmenu,
-    #nav7 ul.right-podmenu {
-      width: 100% !important;
-      float: none !important;
-      margin: 0 0 12px !important;
+    #nav7 > li:hover > div.podmenu,
+    #nav7 > li:focus-within > div.podmenu {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      min-width: min(560px, 94vw) !important;
     }
-    #nav7 > li > div.podmenu_s_podnav > ul.left-podmenu {
+    #nav7 > li.menu_s_podnav > div.podmenu_s_podnav {
+      width: min(640px, 94vw) !important;
+      min-width: min(520px, 94vw) !important;
+    }
+    #nav7 > li.menu_s_podnav > div.podmenu_s_podnav > ul.left-podmenu {
+      width: 42% !important;
+    }
+    #nav7 li.podmenu ul.right-podmenu_page {
+      left: 44% !important;
+    }
+  }
+  @media (max-width: 820px) {
+    #nav7 > li:hover > div.podmenu,
+    #nav7 > li:focus-within > div.podmenu {
+      grid-template-columns: 1fr !important;
+      width: min(420px, 94vw) !important;
+      min-width: 0 !important;
+    }
+    #nav7 > li.menu_s_podnav > div.podmenu_s_podnav {
+      width: min(420px, 94vw) !important;
+      min-width: 0 !important;
+      max-height: min(70vh, 480px) !important;
+      overflow-y: auto !important;
+    }
+    #nav7 > li.menu_s_podnav > div.podmenu_s_podnav > ul.left-podmenu {
       width: 100% !important;
-      max-width: none;
+      max-width: none !important;
+    }
+    #nav7 > li.menu_s_podnav li.podmenu > a.podmenu::after {
+      content: none;
     }
     #nav7 li.podmenu ul.right-podmenu_page {
       position: static !important;
+      left: auto !important;
+      right: auto !important;
+      top: auto !important;
+      bottom: auto !important;
       width: 100% !important;
-      max-height: none !important;
       margin: 4px 0 10px !important;
-      box-shadow: none !important;
-      border: 1px solid var(--line) !important;
+      max-height: none !important;
+      background: #fff !important;
     }
   }
-
 
   /* Neutralize legacy style.css hover that forces all nested links black */
   #nav7 > li:hover a { color: inherit; }
   #nav7 > li:hover > a.menu,
   #nav7 > li:hover > a.site-nav__link { color: #fff !important; }
-  #nav7 > li.site-nav__phone:hover > a { color: var(--amber) !important; }
+  #nav7 > li.site-nav__phone:hover > a { color: #fff !important; }
   #nav7 > li > div a { color: var(--ink) !important; }
   /* ===== CONTENT SHELL ===== */
   #content.w3-content,
@@ -1766,8 +1876,6 @@ function Correct_Position() {
   <a href="javascript:void(0)" class="site-head-mobile__btn" title="Поиск"><i class="fa fa-search"></i></a>
 </div>
 <ul id="nav7" class="w3-card-2 w3-theme-d4 w3-hide-small site-nav" style="z-index: 201; width:100%;">
-	<li class="menu site-nav__phone">
-	    <a href="tel:8-800-555-62-77" data-rel="external" rel="nofollow" class="menu site-nav__link site-nav__link--phone"><i class="material-icons" aria-hidden="true">&#xe0b0;</i><span>8 800 555-62-77</span></a>
 	<li class="menu"><a class="menu site-nav__link" href="#">Программы 1С</a>
 		<div class = "podmenu w3-container w3-card-4 w3-padding-large">
 			<ul class = "left-podmenu"><div class="p3 w3-center">для Бизнеса</div>
@@ -1779,7 +1887,8 @@ function Correct_Position() {
 				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/software-1c_business1c_dogovori.html">1С:Договоры 8.3</a>
 				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/software-1c_business1c_documentooborot.html">1С:Документооборот&nbsp;8.3</a>
 				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/software-1c_business1c_compl-automatization.html">1С:Комплексная автоматизация&nbsp;8.3</a>
-				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/software-1c_business1c_complect-na-5.html">1С:Комплект прикладных решений на 5 пользователей</a> 
+				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/software-1c_business1c_complect-na-5.html">1С:Комплект прикладных решений на 5 пользователей</a>
+				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/software-1c_platform.html">Платформа 1С:Предприятие&nbsp;8.3</a>
 			</ul>
 			<ul class = "right-podmenu"><div class="p3 w3-center">для Государственных и бюджетных учреждений</div>
 				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/software-1c_gosuch1c_buh-gos.html">1С:Бухгалтерия государственного учреждения&nbsp;8.3</a>
@@ -1804,9 +1913,6 @@ function Correct_Position() {
 				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/services_doc-recognition.html">1С Распознавание первичных документов</a>
 				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/services_park.html">1С-ПАРК Риски</a> 
 			</ul>
-			<ul class = "left-podmenu"><div class="p3 w3-center">Технологическая платформа 1С</div>
-				<li class = "podmenu w3-padding-2"><a class = "podmenu" href="https://1c-center.net/software-1c_platform.html">Платформа 1С:Предприятие&nbsp;8.3</a> 
-			</ul> 
 		</div>
 	<li id = "branches" class = "menu_s_podnav"><a class="menu site-nav__link w3-padding-12" href="#3">Отраслевые решения<span class="w3-hide-medium"> 1С</span></a>
 		<div class = "podmenu_s_podnav w3-dropdown-content w3-bar-block w3-container w3-card-4 w3-padding-large">
