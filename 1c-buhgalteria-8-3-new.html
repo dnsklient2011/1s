@@ -337,29 +337,58 @@ function Correct_Position() {
   header#main_head {
     position: relative;
     width: 100%;
-    background: var(--night);
+    min-height: clamp(148px, 18vw, 210px);
+    background: #0a1230;
     color: #fff;
-    overflow: clip;
+    overflow: hidden;
     border-bottom: 0;
+    margin: 0;
+    padding: 0;
+    isolation: isolate;
   }
   #main_head.site-head::before {
     content: "";
     position: absolute;
     inset: 0 auto 0 0;
     width: 5px;
-    background: var(--amber);
-    z-index: 5;
+    background: var(--brand-yellow);
+    z-index: 3;
   }
-  .site-head__bar {
+  .site-head__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 72% center;
+    z-index: 0;
+    display: block;
+  }
+  .site-head__shade {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(100deg,
+        rgba(9, 14, 80, 0.92) 0%,
+        rgba(9, 14, 100, 0.78) 38%,
+        rgba(9, 14, 120, 0.28) 68%,
+        rgba(9, 14, 120, 0.08) 100%),
+      linear-gradient(0deg, rgba(5, 8, 40, 0.35) 0%, transparent 55%);
+  }
+  .site-head__inner {
     position: relative;
-    z-index: 4;
+    z-index: 2;
+    max-width: var(--max);
+    margin: 0 auto;
+    min-height: clamp(148px, 18vw, 210px);
+    padding: 18px clamp(16px, 3vw, 28px) 18px clamp(22px, 3.2vw, 34px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    max-width: var(--max);
-    margin: 0 auto;
-    padding: 16px clamp(16px, 3vw, 28px);
+    gap: clamp(16px, 3vw, 40px);
+    box-sizing: border-box;
   }
   .site-head__brand {
     display: flex;
@@ -368,14 +397,15 @@ function Correct_Position() {
     text-decoration: none !important;
     color: #fff !important;
     min-width: 0;
+    flex: 1 1 auto;
   }
   .site-head__mark {
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
     border-radius: 12px;
     background: var(--brand-yellow);
     color: var(--brand-red);
@@ -383,174 +413,75 @@ function Correct_Position() {
     font-weight: 800;
     font-size: 22px;
     letter-spacing: -0.05em;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   }
-  .site-head__brand-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .site-head__brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
   .site-head__name {
     font-family: var(--display);
-    font-size: clamp(17px, 1.9vw, 22px);
+    font-size: clamp(18px, 2.1vw, 26px);
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.15;
+    color: #fff;
   }
   .site-head__partner {
-    font-size: 12px;
-    color: rgba(255,255,255,0.58);
+    font-size: 13px;
+    color: rgba(255,255,255,0.72);
     font-weight: 500;
   }
-  .site-head__contacts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-end;
-  }
-  .site-head__phone {
+  .site-head__meta {
+    flex: 0 1 auto;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 2px;
+    gap: 8px;
+    text-align: right;
+    max-width: 420px;
+  }
+  .site-head__phones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px 20px;
+  }
+  .site-head__phones a {
+    color: #fff !important;
     text-decoration: none !important;
-    padding: 10px 14px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    transition: .15s ease;
-  }
-  .site-head__phone:hover {
-    background: rgba(39,187,241,0.12);
-    border-color: rgba(39,187,241,0.45);
-  }
-  .site-head__phone-label {
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    font-weight: 600;
-    white-space: nowrap;
-  }
-  .site-head__phone-num {
     font-family: var(--display);
-    font-size: clamp(15px, 1.6vw, 18px);
+    font-size: clamp(16px, 1.7vw, 22px);
     font-weight: 700;
-    color: var(--amber);
     letter-spacing: -0.02em;
     white-space: nowrap;
+    border-bottom: 1px solid transparent;
+  }
+  .site-head__phones a:hover {
+    color: var(--amber) !important;
+    border-bottom-color: rgba(39,187,241,0.55);
+  }
+  .site-head__tagline {
+    margin: 0;
+    font-family: var(--font);
+    font-size: clamp(13px, 1.25vw, 15px);
+    font-weight: 600;
+    line-height: 1.35;
+    color: rgba(255,255,255,0.82);
   }
   .site-head__menu-btn {
     display: none;
     border: 0;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.1);
     color: #fff;
     width: 44px;
     height: 44px;
     border-radius: 12px;
     font-size: 18px;
     cursor: pointer;
-  }
-
-  /* Full-bleed hero with new HQ art */
-  .site-head__hero {
-    position: relative;
-    z-index: 2;
-    min-height: clamp(280px, 36vw, 420px);
-    display: grid;
-    align-items: stretch;
-    isolation: isolate;
-  }
-  .site-head__hero-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: 70% center;
-    z-index: 0;
-    display: block;
-  }
-  .site-head__hero-shade {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background:
-      linear-gradient(105deg,
-        rgba(9, 14, 153, 0.94) 0%,
-        rgba(9, 14, 153, 0.82) 34%,
-        rgba(9, 14, 153, 0.38) 62%,
-        rgba(9, 14, 153, 0.18) 100%),
-      linear-gradient(0deg, rgba(9, 14, 153, 0.48) 0%, transparent 42%);
-  }
-  .site-head__hero-copy {
-    position: relative;
-    z-index: 2;
-    max-width: var(--max);
-    width: 100%;
-    margin: 0 auto;
-    padding: clamp(32px, 5vw, 64px) clamp(16px, 3vw, 28px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-  }
-  .site-head__eyebrow {
-    margin: 0 0 14px;
-    display: inline-flex;
-    align-self: flex-start;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background: rgba(39,187,241,0.14);
-    border: 1px solid rgba(39,187,241,0.4);
-    color: var(--amber);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-  }
-  .site-head__tagline {
-    margin: 0 0 14px;
-    font-family: var(--display);
-    font-size: clamp(26px, 4.2vw, 46px);
-    font-weight: 700;
-    line-height: 1.12;
-    letter-spacing: -0.035em;
-    color: #fff;
-    max-width: 13ch;
-    padding: clamp(12px, 3.5vw, 64px) 0;
-    text-align: left;
-    text-shadow: 0 8px 28px rgba(0,0,0,0.35);
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-  .site-head__lead {
-    margin: 0 0 26px;
-    max-width: 34em;
-    font-size: clamp(15px, 1.55vw, 17px);
-    line-height: 1.55;
-    color: rgba(255,255,255,0.78);
-    font-weight: 500;
-  }
-  .site-head__actions { display: flex; flex-wrap: wrap; gap: 10px; }
-  .site-head__cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 13px 22px;
-    border-radius: 999px;
-    background: var(--amber);
-    color: var(--night) !important;
-    font-weight: 800;
-    font-size: 14px;
-    text-decoration: none !important;
-    box-shadow: 0 12px 28px rgba(39,187,241,0.28);
-  }
-  .site-head__cta:hover { background: var(--amber-hover); }
-  .site-head__cta--ghost {
-    background: rgba(255,255,255,0.06);
-    color: #fff !important;
-    border: 1px solid rgba(255,255,255,0.28);
-    box-shadow: none;
-    backdrop-filter: blur(6px);
-  }
-  .site-head__cta--ghost:hover {
-    border-color: rgba(39,187,241,0.55);
-    background: rgba(255,255,255,0.1);
+    flex: 0 0 auto;
   }
 
   #main_navbar.site-head-mobile {
@@ -558,7 +489,7 @@ function Correct_Position() {
     align-items: center;
     gap: 8px;
     padding: 8px max(12px, env(safe-area-inset-right)) 8px max(12px, env(safe-area-inset-left));
-    background: var(--night) !important;
+    background: var(--night-2) !important;
     box-shadow: 0 10px 24px rgba(0,0,0,0.25);
     box-sizing: border-box;
     min-height: 56px;
@@ -587,6 +518,45 @@ function Correct_Position() {
     color: #fff !important;
     background: rgba(255,255,255,0.08);
     text-decoration: none !important;
+  }
+
+  @media (max-width: 900px) {
+    .site-head__bg { object-position: 80% center; }
+    .site-head__meta { max-width: 300px; }
+    .site-head__tagline { display: none; }
+  }
+  @media (max-width: 700px) {
+    #main_head.site-head,
+    header#main_head {
+      min-height: 112px;
+    }
+    .site-head__inner {
+      min-height: 112px;
+      padding: 14px max(14px, env(safe-area-inset-right)) 14px max(18px, env(safe-area-inset-left));
+      gap: 12px;
+    }
+    .site-head__mark {
+      width: 46px;
+      height: 46px;
+      font-size: 18px;
+      border-radius: 10px;
+    }
+    .site-head__name { font-size: 16px; }
+    .site-head__partner { font-size: 11px; }
+    .site-head__meta { display: none; }
+    .site-head__menu-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .site-head__bg { object-position: 85% center; }
+    .site-head__shade {
+      background:
+        linear-gradient(100deg,
+          rgba(9, 14, 80, 0.94) 0%,
+          rgba(9, 14, 100, 0.82) 55%,
+          rgba(9, 14, 120, 0.4) 100%);
+    }
   }
 
 
@@ -1114,65 +1084,7 @@ function Correct_Position() {
     box-shadow: 0 14px 30px rgba(76,175,80,0.4) !important;
   }
 
-  @media (max-width: 992px) {
-    .site-head__hero { min-height: 300px; }
-    .site-head__hero-bg { object-position: 60% center; }
-    .site-head__tagline { max-width: min(16ch, 100%); }
-    .site-head__bar { gap: 12px; }
-    .site-head__phone { padding: 8px 10px; }
-    .site-head__phone-num { font-size: 15px; }
-  }
   @media (max-width: 700px) {
-    
-    .site-head__contacts { display: none !important; }
-    .site-head__menu-btn {
-      display: inline-flex !important;
-      align-items: center;
-      justify-content: center;
-    }
-    .site-head__bar {
-      padding: 12px max(14px, env(safe-area-inset-right)) 12px max(14px, env(safe-area-inset-left));
-      gap: 10px;
-    }
-    .site-head__mark { width: 44px; height: 44px; font-size: 18px; border-radius: 10px; }
-    .site-head__name { font-size: 16px; }
-    .site-head__partner { font-size: 11px; }
-    .site-head__hero {
-      min-height: 0;
-    }
-    .site-head__hero-bg { object-position: 78% center; }
-    .site-head__hero-copy {
-      padding: 24px max(14px, env(safe-area-inset-right)) 28px max(14px, env(safe-area-inset-left));
-    }
-    .site-head__eyebrow {
-      max-width: 100%;
-      white-space: normal;
-      line-height: 1.35;
-      font-size: 11px;
-    }
-    .site-head__tagline {
-      max-width: none;
-      padding: 8px 0 4px;
-      font-size: clamp(24px, 7vw, 30px);
-    }
-    .site-head__lead {
-      margin-bottom: 18px;
-      font-size: 15px;
-      max-width: none;
-    }
-    .site-head__actions {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 10px;
-      width: 100%;
-    }
-    .site-head__cta {
-      width: 100%;
-      min-height: 48px;
-      box-sizing: border-box;
-      padding: 14px 18px;
-    }
-
     /* Must beat #nav7.site-nav { display:flex !important } */
     #nav7.site-nav,
     #nav7,
@@ -1494,7 +1406,7 @@ function Correct_Position() {
     color: var(--ink-soft);
   }
   #main_head.site-head, header#main_head {
-    margin-top: -20px;
+    margin-top: 0;
   }
   .addressbar {
     display: none;
@@ -1673,7 +1585,6 @@ function Correct_Position() {
   }
 
   @media (max-width: 480px) {
-    .site-head__eyebrow { letter-spacing: 0.02em; }
     .w3-row.w3-content.w3-center.w3-padding,
     .w3-row.w3-content.w3-padding {
       padding: 12px !important;
@@ -1827,7 +1738,9 @@ function Correct_Position() {
     </div>
 </div>
 ﻿<header id="main_head" class="site-head">
-  <div class="site-head__bar">
+  <img class="site-head__bg" src="images/hero-1c-v2.png" alt="" width="1536" height="1024" decoding="async" fetchpriority="high">
+  <div class="site-head__shade" aria-hidden="true"></div>
+  <div class="site-head__inner">
     <a class="site-head__brand" href="https://1c-center.net/" title="1С-Франчайзи Программист">
       <span class="site-head__mark" aria-hidden="true">1С</span>
       <span class="site-head__brand-text">
@@ -1835,35 +1748,16 @@ function Correct_Position() {
         <span class="site-head__partner">Официальный партнер Фирмы «1С»</span>
       </span>
     </a>
-
-    <div class="site-head__contacts">
-      <a class="site-head__phone" href="tel:8-800-555-62-77" data-rel="external" rel="nofollow">
-        <span class="site-head__phone-label">По вопросам приобретения</span>
-        <span class="site-head__phone-num">8 800 555-62-77</span>
-      </a>
-      <a class="site-head__phone" href="tel:8-800-555-45-40" data-rel="external" rel="nofollow">
-        <span class="site-head__phone-label">Техническая поддержка 24/7</span>
-        <span class="site-head__phone-num">8 800 555-45-40</span>
-      </a>
+    <div class="site-head__meta">
+      <div class="site-head__phones">
+        <a href="tel:8-800-555-62-77" data-rel="external" rel="nofollow">8 800 555-62-77</a>
+        <a href="tel:8-800-555-45-40" data-rel="external" rel="nofollow">8 800 555-45-40</a>
+      </div>
+      <p class="site-head__tagline">Продажа, Внедрение и Сопровождение 1С</p>
     </div>
-
     <button type="button" class="site-head__menu-btn w3-hide-medium w3-hide-large" onclick="w3_open()" title="Меню" aria-label="Открыть меню">
       <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
-  </div>
-
-  <div class="site-head__hero">
-    <img class="site-head__hero-bg" src="images/hero-1c-v2.png" alt="" width="1536" height="1024" decoding="async" fetchpriority="high">
-    <div class="site-head__hero-shade" aria-hidden="true"></div>
-    <div class="site-head__hero-copy">
-      <p class="site-head__eyebrow">1С Бухгалтерия 8.3 · купить с установкой и поддержкой</p>
-      <h2 class="site-head__tagline">Продажа, внедрение и сопровождение 1С</h2>
-      <p class="site-head__lead">Установка в день оплаты. Обучение, настройка, обновления. Лицензии Базовая, ПРОФ, КОРП — локально и в облаке 1С:Фреш.</p>
-      <div class="site-head__actions">
-        <a class="site-head__cta" href="#content">Смотреть цены и версии</a>
-        <a class="site-head__cta site-head__cta--ghost" href="tel:8-800-555-62-77" data-rel="external" rel="nofollow">Позвонить</a>
-      </div>
-    </div>
   </div>
 </header>
 <div id="main_navbar" class="site-head-mobile w3-hide-large w3-hide-medium" style="transition: top 0.3s; z-index:100; width:100%;">
