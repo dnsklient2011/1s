@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Веб-разработка — сайты, лендинги и интернет-магазины | 1С-Центр</title>
+  <meta name="description" content="Разработка сайтов, лендингов и интернет-магазинов под ключ. Интеграция с 1С, быстрый запуск, поддержка. Бесплатная консультация — 8 800 555-62-77." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="https://1c-center.net/favicon.ico" type="image/x-icon" />
+  <style>
+    :root {
+      --w3-green: #04AA6D;
+      --w3-green-dark: #059862;
+      --w3-green-light: #D9EEE1;
+      --w3-black: #282A35;
+      --w3-black-2: #1d2a35;
+      --w3-pink: #FFC0C7;
+      --w3-yellow: #FFF4A3;
+      --w3-yellow-dark: #FFF4A3;
+      --w3-light-gray: #E7E9EB;
+      --w3-gray: #F3F3F3;
+      --ink: #000;
+      --ink-soft: #282A35;
+      --muted: #5f6368;
+      --paper: #ffffff;
+      --line: #e7e9eb;
+      --teal: #04AA6D;
+      --teal-deep: #059862;
+      --mint: #04AA6D;
+      --coral: #04AA6D;
+      --coral-hover: #059862;
+      --night: #282A35;
+      --blue: #04AA6D;
+      --lavender: #D9EEE1;
+      --max: 1200px;
+      --font: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+      --display: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+      --serif: "Source Sans 3", "Segoe UI", Arial, sans-serif;
+      --code: "Source Code Pro", Consolas, monospace;
+      --radius: 5px;
+      --gap: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 96px;
+      font-size: 15px;
+    }
+    img, svg { max-width: 100%; display: block; }
+    a { color: inherit; }
+    button, input, textarea, select { font: inherit; }
+
+    .wrap {
+      width: min(100% - 32px, var(--max));
+      margin-inline: auto;
+    }
+
+    /* —— Top bar (W3Schools-like) —— */
+    .wrap.site-header {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding-inline: max(16px, calc((100% - var(--max)) / 2));
+      box-sizing: border-box;
+      background: var(--w3-black);
+      color: #fff;
+    }
+    .site-header {
+      background: var(--w3-black);
+      color: #fff;
+    }
+    .topbar {
+      position: relative;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 0;
+      min-height: 56px;
+      width: min(100%, var(--max));
+      margin-inline: auto;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      text-decoration: none;
+      min-width: 0;
+      justify-self: start;
+    }
+    .brand__name {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0;
+      line-height: 1;
+      text-transform: none;
+      color: #fff;
+    }
+    .brand__name::before {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      vertical-align: -2px;
+      background: var(--w3-green);
+      border-radius: 2px;
+    }
+    .topbar__nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      justify-self: center;
+    }
+    .topbar__nav a {
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      opacity: 1;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background .15s ease;
+    }
+    .topbar__nav a:hover { background: rgba(255,255,255,0.12); }
+    .topbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-self: end;
+    }
+    .topbar__phone {
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0;
+      text-decoration: none;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .topbar__phone:hover { color: var(--w3-green); }
+    .topbar__phones {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      line-height: 1.2;
+    }
+    .topbar__phones a {
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .topbar__phones a:hover { color: #7dcea0; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 5px;
+      padding: 10px 18px;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .15s ease, filter .15s ease;
+    }
+    .btn:hover { filter: brightness(0.95); }
+    .btn--coral,
+    .btn--dark {
+      background: var(--w3-green);
+      color: #fff;
+      box-shadow: none;
+    }
+    .btn--coral:hover,
+    .btn--dark:hover { background: var(--w3-green-dark); filter: none; }
+    .btn--ghost {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.45);
+    }
+    .btn--ghost:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+      filter: none;
+    }
+    .btn--link {
+      background: transparent;
+      color: #fff;
+      padding: 0;
+      font-size: 14px;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .btn--link:hover { filter: none; opacity: 0.85; }
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .15s ease;
+      flex: 0 0 auto;
+    }
+    .icon-btn:hover { background: rgba(255,255,255,0.12); }
+    .icon-btn svg { width: 20px; height: 20px; display: block; }
+
+    /* —— First screen board —— */
+    .board {
+      padding: 24px 0 8px;
+      background: #fff;
+    }
+    .board__grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.2fr 0.95fr;
+      gap: var(--gap);
+      align-items: stretch;
+    }
+    .tile {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: filter .15s ease, box-shadow .15s ease;
+      border: 1px solid var(--line);
+    }
+    .tile:hover { filter: brightness(0.98); }
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+      min-width: 0;
+    }
+
+    .tile--hub {
+      background: var(--w3-black);
+      color: #fff;
+      padding: 22px;
+      min-height: 260px;
+      flex: 1.25;
+      border: 0;
+    }
+    .tile--hub h3 {
+      font-family: var(--display);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin: 0 0 8px;
+    }
+    .tile--hub p {
+      margin: 0 0 16px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.82);
+      max-width: 30ch;
+    }
+    .hub__mosaic {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: auto;
+      margin-bottom: 16px;
+    }
+    .hub__mosaic i {
+      display: block;
+      aspect-ratio: 1.2;
+      border-radius: 3px;
+      background: #444;
+    }
+    .hub__mosaic i:nth-child(1) { background: var(--w3-green); }
+    .hub__mosaic i:nth-child(2) { background: #FFF4A3; }
+    .hub__mosaic i:nth-child(3) { background: #96D4D4; }
+    .hub__mosaic i:nth-child(4) { background: #FFC0C7; }
+    .hub__mosaic i:nth-child(5) { background: #F3ECEA; }
+    .hub__mosaic i:nth-child(6) { background: #D9EEE1; }
+
+    .tile--exhibit {
+      background: var(--w3-green);
+      color: #fff;
+      padding: 22px;
+      min-height: 180px;
+      flex: 1;
+      justify-content: flex-end;
+      border: 0;
+    }
+    .tile--exhibit h3 {
+      font-family: var(--display);
+      font-size: clamp(28px, 3.2vw, 40px);
+      font-weight: 700;
+      font-style: normal;
+      letter-spacing: 0;
+      margin: 0 0 8px;
+      line-height: 1.05;
+    }
+    .tile--exhibit p {
+      margin: 0 0 14px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.92);
+      max-width: 26ch;
+    }
+
+    .tile--cases {
+      background: var(--w3-pink);
+      color: var(--ink);
+      padding: 18px;
+      min-height: 110px;
+      border: 0;
+    }
+    .tile--cases h3 {
+      font-family: var(--display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin: 0 0 6px;
+    }
+    .tile--cases p {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: #282A35;
+    }
+    .tile--cases .tile__cta { color: var(--ink); }
+    .cases__row {
+      display: flex;
+      gap: 6px;
+      margin-top: auto;
+    }
+    .cases__row i {
+      flex: 1;
+      height: 28px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.65);
+    }
+    .cases__row i:nth-child(1) { background: #fff; }
+    .cases__row i:nth-child(2) { background: #ffd6db; }
+    .cases__row i:nth-child(3) { background: #ffb3bc; }
+    .cases__row i:nth-child(4) { background: #ff8a98; }
+
+    .tile__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 15px;
+      color: #fff;
+      margin-top: auto;
+    }
+    .tile__cta span { transition: transform .15s ease; }
+    .tile:hover .tile__cta span { transform: translateX(3px); }
+
+    .feed {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+    }
+    .feed__feature {
+      display: block;
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--line);
+      transition: box-shadow .15s ease;
+    }
+    .feed__feature:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .feed__feature-media {
+      height: 180px;
+      background:
+        linear-gradient(135deg, rgba(4,170,109,0.18), transparent 50%),
+        linear-gradient(180deg, #282A35, #1d2a35);
+      position: relative;
+      font-family: var(--code);
+    }
+    .feed__feature-media::after {
+      content: "1С-ЦЕНТР WEB";
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      font-family: var(--code);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: #7dcea0;
+    }
+    .feed__feature-body {
+      padding: 16px 18px 18px;
+      border-left: 4px solid var(--w3-green);
+    }
+    .feed__feature-body h1 {
+      margin: 0 0 6px;
+      font-family: var(--display);
+      font-size: clamp(20px, 2.2vw, 26px);
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.2;
+    }
+    .feed__feature-body p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .feed__item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: center;
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 10px;
+      text-decoration: none;
+      color: inherit;
+      min-height: 84px;
+      border: 1px solid var(--line);
+      transition: background .15s ease;
+    }
+    .feed__item:hover { background: var(--w3-gray); }
+    .feed__thumb {
+      width: 96px;
+      height: 64px;
+      border-radius: 3px;
+      overflow: hidden;
+      flex: 0 0 auto;
+      position: relative;
+    }
+    .feed__thumb span {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: var(--code);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0;
+      color: #fff;
+    }
+    .feed__thumb--1 { background: var(--w3-green); }
+    .feed__thumb--2 { background: #282A35; }
+    .feed__thumb--3 { background: #FFC0C7; color: #000; }
+    .feed__thumb--3 span { color: #000; }
+    .feed__thumb--4 { background: #04AA6D; }
+    .feed__body h3 {
+      margin: 0 0 4px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.25;
+    }
+    .feed__body p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .tile--spotlight {
+      background: var(--w3-green-light);
+      color: #000;
+      padding: 20px;
+      min-height: 280px;
+      flex: 1.1;
+      overflow: hidden;
+      border: 0;
+    }
+    .tile--spotlight h3 {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin: 0 0 8px;
+      color: #000;
+    }
+    .tile--spotlight > p {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: #282A35;
+      max-width: 30ch;
+    }
+    .spot__roles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: auto;
+    }
+    .spot__role {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      background: #fff;
+      border: 1px solid #c8e6d5;
+      transition: border-color .15s ease;
+    }
+    .tile--spotlight:hover .spot__role {
+      border-color: var(--w3-green);
+    }
+    .spot__role img {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      object-fit: cover;
+      flex: 0 0 auto;
+      background: var(--w3-light-gray);
+    }
+    .spot__role strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.2;
+      color: #000;
+    }
+    .spot__role span {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    .tile--stories {
+      background: var(--w3-yellow);
+      color: var(--ink);
+      padding: 20px;
+      min-height: 180px;
+      flex: 1;
+      border: 0;
+    }
+    .tile--stories h3 {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin: 0 0 8px;
+    }
+    .tile--stories p {
+      margin: 0 0 14px;
+      font-size: 14px;
+      color: #282A35;
+    }
+    .tile--stories .tile__cta { color: #000; }
+    .stories__row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    .stories__row i {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      background: #fff;
+      flex: 0 0 auto;
+      border: 1px solid #e6d98a;
+    }
+    .stories__row i:nth-child(1) { background: #282A35; }
+    .stories__row i:nth-child(2) { background: var(--w3-green); }
+    .stories__row i:nth-child(3) { background: #FFC0C7; }
+    .stories__row i:nth-child(4) { background: #96D4D4; }
+    .stories__row i:nth-child(5) { background: #fff; }
+
+    @keyframes boardIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .board__grid > * {
+      animation: boardIn .55s ease both;
+    }
+    .board__grid > *:nth-child(1) { animation-delay: .04s; }
+    .board__grid > *:nth-child(2) { animation-delay: .08s; }
+    .board__grid > *:nth-child(3) { animation-delay: .12s; }
+    @media (prefers-reduced-motion: reduce) {
+      .board__grid > *,
+      .reveal { animation: none !important; opacity: 1; transform: none; }
+    }
+
+    /* —— Sections —— */
+    section { padding: 48px 0; }
+    .section__head {
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+    .section__eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--w3-green);
+      margin-bottom: 8px;
+      background: var(--w3-green-light);
+      padding: 4px 10px;
+      border-radius: 3px;
+    }
+    .section__title {
+      font-family: var(--display);
+      font-size: clamp(26px, 3.4vw, 36px);
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.2;
+      margin: 0 0 10px;
+    }
+    .section__text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.is-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      overflow: visible;
+    }
+    .service {
+      background: #fff;
+      padding: 22px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      border-top: 4px solid var(--w3-green);
+      transition: box-shadow .15s ease;
+    }
+    .service:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.06); background: #fff; }
+    .service__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
+      background: var(--w3-green-light);
+      display: grid;
+      place-items: center;
+      color: var(--w3-green-dark);
+      margin-bottom: 4px;
+    }
+    .service h3 {
+      font-family: var(--display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin: 0;
+    }
+    .service p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      flex: 1;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      counter-reset: step;
+    }
+    .step {
+      position: relative;
+      padding: 18px;
+      background: var(--w3-gray);
+      border-radius: var(--radius);
+      border-left: 4px solid var(--w3-green);
+    }
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      font-family: var(--code);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0;
+      color: var(--w3-green);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .step h3 {
+      font-family: var(--display);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin: 0 0 8px;
+    }
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .proof {
+      background: var(--w3-black);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: clamp(24px, 4vw, 40px);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(20px, 4vw, 40px);
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .proof::after { display: none; }
+    .proof__title {
+      font-family: var(--display);
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.2;
+      margin: 0 0 12px;
+    }
+    .proof__text {
+      margin: 0;
+      color: rgba(255,255,255,0.78);
+      font-size: 15px;
+      max-width: 42ch;
+    }
+    .proof__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .proof__list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .proof__list li span {
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--w3-green);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 1px;
+    }
+
+    .cta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 48px);
+      align-items: start;
+    }
+    .cta__note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+    .contacts {
+      margin-top: 20px;
+      display: grid;
+      gap: 14px;
+    }
+    .contacts__group { display: grid; gap: 6px; }
+    .contacts__label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--w3-green);
+    }
+    .contacts__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 4px;
+    }
+    .contacts__list a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .contacts__list a:hover { color: var(--w3-green); text-decoration: underline; }
+    .contacts__list span {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 13px;
+      margin-right: 6px;
+    }
+
+    .form {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(20px, 3vw, 28px);
+      box-shadow: none;
+      border-top: 4px solid var(--w3-green);
+    }
+    .form h3 {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin: 0 0 16px;
+    }
+    .field {
+      display: grid;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .field label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #282A35;
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 11px 12px;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--w3-green);
+      box-shadow: 0 0 0 2px rgba(4, 170, 109, 0.2);
+      background: #fff;
+    }
+    .field textarea { min-height: 96px; resize: vertical; }
+    .form__ok {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 5px;
+      background: var(--w3-green-light);
+      color: #045c38;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .form__err {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 5px;
+      background: #FFC0C7;
+      color: #7a1020;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .form.is-sent .form__ok { display: block; }
+    .form.is-sent .form__fields { display: none; }
+    .form.is-error .form__err { display: block; }
+    .form.is-loading .btn[type="submit"] {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .hp {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 36px 0 48px;
+      color: var(--muted);
+      font-size: 14px;
+      background: var(--w3-black);
+      color: rgba(255,255,255,0.7);
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, 1fr);
+      gap: 24px 28px;
+    }
+    .footer__brand {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0;
+      text-transform: none;
+      color: #fff;
+      margin: 0 0 8px;
+    }
+    .footer__copy {
+      margin: 0;
+      max-width: 30ch;
+      color: rgba(255,255,255,0.65);
+    }
+    .footer__title {
+      margin: 0 0 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #7dcea0;
+    }
+    .footer__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .footer__list a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .footer__list a:hover { color: var(--w3-green); text-decoration: underline; }
+    .footer__list span {
+      display: block;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 500;
+      margin-bottom: 1px;
+    }
+
+    /* Fixed messenger dock */
+    .fab-dock {
+      position: fixed;
+      right: max(14px, env(safe-area-inset-right));
+      bottom: max(14px, env(safe-area-inset-bottom));
+      z-index: 120;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .fab {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .fab:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+    .fab:focus-visible {
+      outline: 2px solid var(--w3-green);
+      outline-offset: 3px;
+    }
+    .fab svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+      fill: currentColor;
+    }
+    .fab--wa { background: #25d366; }
+    .fab--tg { background: #2aabee; }
+    .fab--max { background: #7b61ff; }
+
+    /* Drawer */
+    .veil {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+    .veil.is-open { display: block; }
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 210;
+      width: min(420px, 92vw);
+      height: 100%;
+      background: #282A35;
+      color: #fff;
+      transform: translateX(105%);
+      transition: transform .25s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -8px 0 24px rgba(0,0,0,0.25);
+    }
+    .drawer.is-open { transform: translateX(0); }
+    .drawer__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      flex: 0 0 auto;
+      background: #1d2a35;
+    }
+    .drawer__title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0;
+      margin: 0;
+    }
+    .drawer__close {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .drawer__search {
+      padding: 12px 16px;
+      flex: 0 0 auto;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .drawer__search input {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 5px;
+      padding: 11px 12px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      outline: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .drawer__search input::placeholder { color: rgba(255,255,255,0.45); }
+    .drawer__search input:focus {
+      border-color: var(--w3-green);
+      box-shadow: 0 0 0 2px rgba(4,170,109,0.25);
+    }
+    .drawer__body {
+      overflow: auto;
+      flex: 1 1 auto;
+      padding: 8px 0 28px;
+      -webkit-overflow-scrolling: touch;
+    }
+    #menu_mobile {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    #menu_mobile > li {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    #menu_mobile > li > input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #menu_mobile .p4 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 16px;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0;
+      cursor: pointer;
+      user-select: none;
+    }
+    #menu_mobile .p4::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid rgba(255,255,255,0.55);
+      border-bottom: 2px solid rgba(255,255,255,0.55);
+      transform: rotate(45deg);
+      transition: transform .15s ease;
+      flex: 0 0 auto;
+      margin-top: -4px;
+    }
+    #menu_mobile > li.is-open .p4::after {
+      transform: rotate(-135deg);
+      margin-top: 4px;
+    }
+    #menu_mobile .msg {
+      display: none;
+      padding: 0 10px 12px;
+    }
+    #menu_mobile > li.is-open .msg { display: block; }
+    #menu_mobile .msg a {
+      display: block;
+      padding: 10px 12px;
+      margin: 2px 0;
+      border-radius: 5px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.86);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.35;
+      background: rgba(255,255,255,0.04);
+    }
+    #menu_mobile .msg a:hover {
+      background: rgba(4,170,109,0.22);
+      color: #fff;
+    }
+    #menu_mobile > li.is-hidden { display: none; }
+    #menu_mobile .msg a.is-hidden { display: none; }
+
+    @media (max-width: 1100px) {
+      .board__grid { grid-template-columns: 1fr 1fr; }
+      .col--right { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+      .col--left { gap: var(--gap); }
+    }
+    @media (max-width: 960px) {
+      .services { grid-template-columns: 1fr 1fr; }
+      .process { grid-template-columns: 1fr 1fr; }
+      .proof, .cta { grid-template-columns: 1fr; }
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 150;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding-left: max(14px, env(safe-area-inset-left));
+        padding-right: max(14px, env(safe-area-inset-right));
+        padding-top: env(safe-area-inset-top);
+        box-sizing: border-box;
+        background: var(--w3-black);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-bottom: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      }
+      .topbar {
+        grid-template-columns: 1fr auto;
+        padding: 10px 0;
+        min-height: 52px;
+      }
+      .topbar__nav { display: none; }
+      .brand__name { font-size: 18px; }
+      body {
+        padding-top: calc(62px + env(safe-area-inset-top));
+      }
+      .board__grid { grid-template-columns: 1fr; }
+      .col--right { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .topbar__phones { display: none; }
+      .btn--dark { display: none; }
+      .services, .process { grid-template-columns: 1fr; }
+      .feed__item { grid-template-columns: 88px 1fr; }
+      .feed__thumb { width: 88px; height: 60px; }
+      .feed__feature-media { height: 150px; }
+      .footer__grid { grid-template-columns: 1fr; }
+      body {
+        padding-top: calc(58px + env(safe-area-inset-top));
+      }
+      .fab { width: 46px; height: 46px; }
+      .fab svg { width: 22px; height: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <button type="button" class="veil" id="Veil" aria-label="Закрыть меню"></button>
+  <aside class="drawer" id="mySidebar" aria-hidden="true" aria-label="Меню сайта">
+    <div class="drawer__head">
+      <h2 class="drawer__title">Меню</h2>
+      <button type="button" class="drawer__close" id="btn-close-menu" aria-label="Закрыть">&times;</button>
+    </div>
+    <div class="drawer__search">
+      <input type="search" id="Search_menu" placeholder="Поиск по разделам 1С..." autocomplete="off" />
+    </div>
+    <div class="drawer__body">
+      <ul id="menu_mobile">
+                <li class="is-open">
+                  <div class="p4" role="button" tabindex="0">Программы 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/software-1c_business1c_business1c.html">- 1С для Бизнеса</a> <a class="drawer__link" href="https://1c-center.net/software-1c_gosuch1c_gosuch1c.html">- 1С для Госучреждений</a> <a class="drawer__link" href="https://1c-center.net/software-1c_platform.html">- Технологическая платформа 1С</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Отраслевые решения 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/otrasli_transport_transport.html">Автотранспорт</a> <a class="drawer__link" href="https://1c-center.net/otrasli_autoservice_autoservice.html">Автосервис</a> <a class="drawer__link" href="https://1c-center.net/otrasli_glonass-gps_glonass-gps.html">ГЛОНАСС-GPS</a> <a class="drawer__link" href="https://1c-center.net/otrasli_gkh_gkh.html">ЖКХ, ТСЖ, ЖСК</a> <a class="drawer__link" href="https://1c-center.net/otrasli_izdpol_izdpol.html">Издательство, полиграфия</a> <a class="drawer__link" href="https://1c-center.net/otrasli_culture_culture.html">Культура</a> <a class="drawer__link" href="https://1c-center.net/otrasli_Logistica_Logistica.html">Логистика</a> <a class="drawer__link" href="https://1c-center.net/otrasli_med_med.html">Медицина</a> <a class="drawer__link" href="https://1c-center.net/otrasli_esteblish_esteblish.html">Недвижимость</a> <a class="drawer__link" href="https://1c-center.net/otrasli_non-commercial_non-commercial.html">Некоммерческие организации</a> <a class="drawer__link" href="https://1c-center.net/otrasli_education_education.html">Образование</a> <a class="drawer__link" href="https://1c-center.net/otrasli_foodprom_foodprom.html">Пищевая промышленность</a> <a class="drawer__link" href="https://1c-center.net/otrasli_manufacture_manufacture.html">Промышленное производство</a> <a class="drawer__link" href="https://1c-center.net/otrasli_agrofor_agrofor.html">Сельское и лесное хозяйство</a> <a class="drawer__link" href="https://1c-center.net/otrasli_insurance_insurance.html">Страхование</a> <a class="drawer__link" href="https://1c-center.net/otrasli_building_building.html">Строительство</a> <a class="drawer__link" href="https://1c-center.net/otrasli_vodosnab_vodosnab.html">ВОДОСНАБЖЕНИЕ</a> <a class="drawer__link" href="https://1c-center.net/otrasli_vodosnab_teploceti.html">ТЕПЛОСЕТИ</a> <a class="drawer__link" href="https://1c-center.net/otrasli_trade_trade.html">Торговля</a> <a class="drawer__link" href="https://1c-center.net/otrasli_energy-soft_energy-soft1c.html">Энергетика</a> <a class="drawer__link" href="https://1c-center.net/otrasli_crm_crm.html">CRM</a> <a class="drawer__link" href="https://1c-center.net/otrasli_service_uslugi.html">Услуги (бытовые)</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">1С Предприятие 7.7</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/1С77_buh77.html">1С Бухгалтперия 7.7</a> <a class="drawer__link" href="https://1c-center.net/1С77_zik77.html">1С Зарплата и кадры 7.7</a> <a class="drawer__link" href="https://1c-center.net/1С77_trade77.html">1С Торговля и склад 7.7</a> <a class="drawer__link" href="https://1c-center.net/1С77_complex77.html">1С Комплексная 7.7</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Сервисы 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/services_otchetnost.html">1С-Отчетность</a> <a class="drawer__link" href="https://1c-center.net/services_kontragent.html">1С-Контрагент</a> <a class="drawer__link" href="https://1c-center.net/services_autoupdate.html">Обновление 1С</a> <a class="drawer__link" href="https://1c-center.net/services_edo.html">1С-ЭДО</a> <a class="drawer__link" href="https://1c-center.net/services_link.html">1С-Линк</a> <a class="drawer__link" href="https://1c-center.net/services_info_its.html">1С-ИТС (Информационная система 1С:ИТС)</a> <a class="drawer__link" href="https://1c-center.net/services_kp_prof.html">КП (Комплект поддержки) - Комлпект сервисов 1С</a> <a class="drawer__link" href="https://1c-center.net/services_fresh.html">1С-Фреш (1С в Облаке) через Интернет.</a> <a class="drawer__link" href="https://1c-center.net/services_lk-employee.html">1С Кабинет сотрудника</a> <a class="drawer__link" href="https://1c-center.net/services_doc-recognition.html">1С Распознавание первичных документов</a> <a class="drawer__link" href="https://1c-center.net/services_park.html">1С-ПАРК Риски</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Обновление 1С и ИТС</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/update_its-techno.html">Автоматическое через интернет</a> <a class="drawer__link" href="https://1c-center.net/update_its-prof.html">- ИТС-ПРОФ</a> <a class="drawer__link" href="https://1c-center.net/update_its-techno.html">- ИТС-ТЕХНО</a> <a class="drawer__link" href="https://1c-center.net/update_its-budget.html">- ИТС-Бюджет</a> <a class="drawer__link" href="https://1c-center.net/update_its-medicine.html">- ИТС-Медицина</a> <a class="drawer__link" href="https://1c-center.net/update_its-building.html">- ИТС-Строительство</a> <a class="drawer__link" href="https://1c-center.net/update_its-otrasli.html">- ИТС-Отраслевой</a> <a class="drawer__link" href="https://1c-center.net/update_update1c.html">Настроенных конфигураций</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Услуги по 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/support-1c_vnedrenie1c.html">Внедрение 1С</a> <a class="drawer__link" href="https://1c-center.net/support-1c_install1c.html">Установка и настройка 1С</a> <a class="drawer__link" href="https://1c-center.net/support-1c_1c-consulting.html">Консультационные услуги по 1С</a> <a class="drawer__link" href="https://1c-center.net/support-1c_nastr-adfunctions.html">Настройка доп. функционала</a> <a class="drawer__link" href="https://1c-center.net/support-1c_biz-processing.html">Описание Бизнесс-процессов</a> <a class="drawer__link" href="https://1c-center.net/support-1c_abonentka.html">Сопровождение по 1С</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Интеграция 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/integration-1c_ko.html">с Кассовым оборудованием</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_site.html">с Интергнет-магазином</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_1c-telefone.html">с Телефонией</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_1c-billing.html">Биллинговые системы</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_crm-systems.html">CRM системы</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_1c-cms.html">CMS в 1С</a> 
+                  </div>
+                </li>
+      </ul>
+    </div>
+  </aside>
+
+  <div class="wrap site-header" id="top">
+    <header class="topbar">
+      <a class="brand" href="#top">
+        <span class="brand__name">1С-Центр</span>
+      </a>
+      <nav class="topbar__nav" aria-label="Разделы">
+        <a href="#services">Услуги</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div class="topbar__actions">
+        <div class="topbar__phones">
+          <a href="tel:88005556277">8 800 555-62-77</a>
+          <a href="tel:88005554540">8 800 555-45-40</a>
+        </div>
+        <button type="button" class="icon-btn" id="btn-search" title="Поиск" aria-label="Поиск по меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="btn-menu" title="Меню" aria-label="Открыть меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a class="btn btn--dark" href="#order">Обсудить</a>
+      </div>
+    </header>
+  </div>
+
+  <section class="board" aria-label="Главный экран">
+    <div class="wrap">
+      <div class="board__grid">
+        <div class="col col--left">
+          <a class="tile tile--hub" href="#services">
+            <h3>Форматы</h3>
+            <p>От одностраничника до магазина с обменом данными из 1С.</p>
+            <div class="hub__mosaic" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <span class="tile__cta">Смотреть услуги <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="tile tile--exhibit" href="#order">
+            <h3>Studio</h3>
+            <p>Типовой лендинг — от 2 недель до запуска.</p>
+            <span class="tile__cta">Оставить заявку <span aria-hidden="true">→</span></span>
+          </a>
+          <a class="tile tile--cases" href="#services">
+            <h3>Кейсы и подходы</h3>
+            <p>Лендинг, витрина, магазин, связка с 1С.</p>
+            <div class="cases__row" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          </a>
+        </div>
+
+        <div class="feed">
+          <a class="feed__feature" href="#order">
+            <div class="feed__feature-media" aria-hidden="true"></div>
+            <div class="feed__feature-body">
+              <h1>Сайты, которые приводят клиентов</h1>
+              <p>Лендинги, корпоративные сайты и магазины с интеграцией 1С</p>
+            </div>
+          </a>
+          <a class="feed__item" href="#services">
+            <div class="feed__thumb feed__thumb--1"><span>LP</span></div>
+            <div class="feed__body">
+              <h3>Лендинги под рекламу</h3>
+              <p>Оффер, формы заявок, аналитика</p>
+            </div>
+          </a>
+          <a class="feed__item" href="#services">
+            <div class="feed__thumb feed__thumb--2"><span>WEB</span></div>
+            <div class="feed__body">
+              <h3>Корпоративные сайты</h3>
+              <p>Витрина компании и удобная админка</p>
+            </div>
+          </a>
+          <a class="feed__item" href="#services">
+            <div class="feed__thumb feed__thumb--3"><span>SHOP</span></div>
+            <div class="feed__body">
+              <h3>Интернет-магазины</h3>
+              <p>Каталог, оплата, доставка</p>
+            </div>
+          </a>
+          <a class="feed__item" href="#services">
+            <div class="feed__thumb feed__thumb--4"><span>1С</span></div>
+            <div class="feed__body">
+              <h3>Интеграция с 1С</h3>
+              <p>Товары, цены, заказы без ручной работы</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="col col--right">
+          <a class="tile tile--spotlight" href="#contacts">
+            <h3>Команда проекта</h3>
+            <p>Четыре роли на каждый запуск — от макета до сопровождения.</p>
+            <div class="spot__roles">
+              <div class="spot__role">
+                <img src="images/team/robot-01.png" alt="" width="88" height="88" loading="lazy" decoding="async">
+                <div>
+                  <strong>Дизайн</strong>
+                  <span>UX и визуал</span>
+                </div>
+              </div>
+              <div class="spot__role">
+                <img src="images/team/robot-04.png" alt="" width="88" height="88" loading="lazy" decoding="async">
+                <div>
+                  <strong>Frontend</strong>
+                  <span>Вёрстка и JS</span>
+                </div>
+              </div>
+              <div class="spot__role">
+                <img src="images/team/robot-06.png" alt="" width="88" height="88" loading="lazy" decoding="async">
+                <div>
+                  <strong>1С</strong>
+                  <span>Интеграции</span>
+                </div>
+              </div>
+              <div class="spot__role">
+                <img src="images/team/robot-02.png" alt="" width="88" height="88" loading="lazy" decoding="async">
+                <div>
+                  <strong>Поддержка</strong>
+                  <span>После запуска</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="tile tile--stories" href="#order">
+            <h3>Поддержка</h3>
+            <p>Правки, контент, мониторинг и развитие сайта.</p>
+            <div class="stories__row" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <span class="tile__cta">Обсудить задачу <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div class="section__eyebrow">Услуги</div>
+        <h2 class="section__title">Что разрабатываем</h2>
+        <p class="section__text">От одностраничника до интернет-магазина с обменом данными с 1С.</p>
+      </div>
+      <div class="services reveal">
+        <article class="service">
+          <div class="service__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h14"/></svg>
+          </div>
+          <h3>Лендинги</h3>
+          <p>Продающие страницы под рекламу: ясный оффер, формы заявок, аналитика.</p>
+        </article>
+        <article class="service">
+          <div class="service__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+          </div>
+          <h3>Корпоративные сайты</h3>
+          <p>Витрина компании: услуги, кейсы, команда, удобная админка.</p>
+        </article>
+        <article class="service">
+          <div class="service__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.5L21 8H7"/></svg>
+          </div>
+          <h3>Интернет-магазины</h3>
+          <p>Каталог, корзина, оплата и доставка. Обмен заказами и остатками с 1С.</p>
+        </article>
+        <article class="service">
+          <div class="service__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7h8M8 12h5M7 3h10a2 2 0 0 1 2 2v14l-4-2-3 2-3-2-4 2V5a2 2 0 0 1 2-2z"/></svg>
+          </div>
+          <h3>Интеграция с 1С</h3>
+          <p>Синхронизация товаров, цен, контрагентов и документов без ручной работы.</p>
+        </article>
+        <article class="service">
+          <div class="service__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg>
+          </div>
+          <h3>Редизайн и ускорение</h3>
+          <p>Обновляем устаревший сайт: скорость, мобильная версия, современный UI.</p>
+        </article>
+        <article class="service">
+          <div class="service__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+          </div>
+          <h3>Поддержка</h3>
+          <p>Правки, контент, мониторинг и развитие после запуска.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div class="section__eyebrow">Процесс</div>
+        <h2 class="section__title">Как идёт работа</h2>
+        <p class="section__text">Прозрачные этапы без сюрпризов по срокам и бюджету.</p>
+      </div>
+      <div class="process reveal">
+        <div class="step">
+          <h3>Бриф</h3>
+          <p>Цели, аудитория, референсы и интеграции — фиксируем задачу.</p>
+        </div>
+        <div class="step">
+          <h3>Прототип</h3>
+          <p>Структура и ключевые экраны, чтобы согласовать логику до вёрстки.</p>
+        </div>
+        <div class="step">
+          <h3>Разработка</h3>
+          <p>Дизайн, код, формы, аналитика и связка с 1С при необходимости.</p>
+        </div>
+        <div class="step">
+          <h3>Запуск</h3>
+          <p>Тесты, публикация, обучение и план поддержки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="proof reveal">
+        <div>
+          <h2 class="proof__title">Сайт как инструмент продаж, а не просто визитка</h2>
+          <p class="proof__text">Собираем страницы под заявки и звонки: понятный оффер, быстрая загрузка, удобные формы.</p>
+        </div>
+        <ul class="proof__list">
+          <li><span>✓</span> Адаптив под телефон и планшет</li>
+          <li><span>✓</span> SEO-база и счётчики аналитики</li>
+          <li><span>✓</span> Интеграция с 1С и CRM</li>
+          <li><span>✓</span> Срок типового лендинга — от 2 недель</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="order">
+    <div class="wrap">
+      <div class="cta">
+        <div class="reveal" id="contacts">
+          <div class="section__eyebrow">Контакты</div>
+          <h2 class="section__title">Оценим ваш проект бесплатно</h2>
+          <p class="section__text">Опишите задачу — перезвоним в рабочее время и предложим формат, сроки и ориентир по бюджету.</p>
+          <div class="contacts">
+            <div class="contacts__group">
+              <div class="contacts__label">Телефоны</div>
+              <ul class="contacts__list">
+                <li><a href="tel:88005556277">8 800 555-62-77</a></li>
+                <li><a href="tel:88005554540">8 800 555-45-40</a></li>
+              </ul>
+            </div>
+            <div class="contacts__group">
+              <div class="contacts__label">Email</div>
+              <ul class="contacts__list">
+                <li><a href="mailto:zakaz@1c-center.net">zakaz@1c-center.net</a></li>
+                <li><a href="mailto:1cbox@mail.ru">1cbox@mail.ru</a></li>
+              </ul>
+            </div>
+            <div class="contacts__group">
+              <div class="contacts__label">Мессенджеры</div>
+              <ul class="contacts__list">
+                <li><span>WhatsApp</span><a href="https://wa.me/79310061188" target="_blank" rel="noopener noreferrer">+7 931 006-11-88</a></li>
+                <li><span>Telegram, Max</span><a href="tel:+79255896677">+7 925 589-66-77</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <form class="form reveal" id="lead-form" action="send-lead.php" method="post" novalidate>
+          <h3>Оставить заявку</h3>
+          <div class="form__fields">
+            <div class="hp" aria-hidden="true">
+              <label for="company_url">Сайт компании</label>
+              <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="name">Имя</label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Как к вам обращаться" />
+            </div>
+            <div class="field">
+              <label for="phone">Телефон</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="+7 (___) ___-__-__" />
+            </div>
+            <div class="field">
+              <label for="type">Тип проекта</label>
+              <select id="type" name="type">
+                <option>Лендинг</option>
+                <option>Корпоративный сайт</option>
+                <option>Интернет-магазин</option>
+                <option>Интеграция с 1С</option>
+                <option>Другое</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Коротко о задаче</label>
+              <textarea id="message" name="message" placeholder="Ниша, сроки, есть ли сейчас сайт"></textarea>
+            </div>
+            <button class="btn btn--coral" type="submit" style="width:100%" id="lead-submit">Отправить</button>
+          </div>
+          <div class="form__ok" role="status">Спасибо! Заявка отправлена на zakaz@1c-center.net — мы свяжемся с вами.</div>
+          <div class="form__err" role="alert" id="lead-error"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__brand">1С-Центр</p>
+        <p class="footer__copy">© <span id="year"></span> · веб-разработка · Москва и Московская область</p>
+      </div>
+      <div>
+        <p class="footer__title">Телефоны</p>
+        <ul class="footer__list">
+          <li><a href="tel:88005556277">8 800 555-62-77</a></li>
+          <li><a href="tel:88005554540">8 800 555-45-40</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Email</p>
+        <ul class="footer__list">
+          <li><a href="mailto:zakaz@1c-center.net">zakaz@1c-center.net</a></li>
+          <li><a href="mailto:1cbox@mail.ru">1cbox@mail.ru</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Мессенджеры</p>
+        <ul class="footer__list">
+          <li>
+            <span>WhatsApp</span>
+            <a href="https://wa.me/79310061188" target="_blank" rel="noopener noreferrer">+7 931 006-11-88</a>
+          </li>
+          <li>
+            <span>Telegram, Max</span>
+            <a href="tel:+79255896677">+7 925 589-66-77</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fab-dock" aria-label="Мессенджеры">
+    <a class="fab fab--wa" href="https://wa.me/79310061188" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Написать в WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.86c0 1.94.5 3.76 1.46 5.38L2 22l4.92-1.55a9.9 9.9 0 0 0 5.12 1.4h.01c5.46 0 9.89-4.4 9.89-9.86C21.94 6.4 17.5 2 12.04 2zm0 17.96h-.01a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.05.96 1-2.97-.2-.31a8.06 8.06 0 0 1-1.24-4.3c0-4.47 3.64-8.1 8.12-8.1 2.17 0 4.21.85 5.75 2.38a8.05 8.05 0 0 1 2.37 5.73c0 4.47-3.64 8.1-8.11 8.1zm4.45-6.06c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.37-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
+    </a>
+    <a class="fab fab--tg" href="tg://resolve?phone=79255896677" title="Telegram" aria-label="Написать в Telegram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.94 4.33 18.7 19.6c-.24 1.07-.88 1.33-1.78.83l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.99.48l.35-5.03 9.15-8.27c.4-.35-.09-.55-.62-.2L6.3 13.26l-4.87-1.52c-1.06-.33-1.08-1.06.22-1.57L20.5 3.2c.88-.33 1.65.2 1.44 1.13z"/></svg>
+    </a>
+    <a class="fab fab--max" href="tel:+79255896677" title="Max" aria-label="Написать в Max">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.3 2 11.5c0 2.9 1.3 5.5 3.4 7.3V22l3.5-1.9c1 .3 2 .4 3.1.4 5.5 0 10-4.3 10-9.5S17.5 2 12 2zm4.8 7.2-6.2 5.8c-.2.2-.5.2-.7 0l-2.7-2.5c-.3-.2-.3-.6 0-.8l.7-.6c.2-.2.5-.2.7 0l1.7 1.5 5.1-4.8c.2-.2.5-.2.7 0l.7.6c.2.2.2.6 0 .8z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    var leadForm = document.getElementById("lead-form");
+    var leadSubmit = document.getElementById("lead-submit");
+    var leadError = document.getElementById("lead-error");
+
+    leadForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      leadForm.classList.remove("is-error", "is-sent");
+      leadError.textContent = "";
+
+      if (!leadForm.reportValidity()) return;
+
+      leadForm.classList.add("is-loading");
+      leadSubmit.textContent = "Отправляем…";
+
+      var data = new FormData(leadForm);
+
+      fetch(leadForm.action, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) {
+          return res.json().then(function (json) {
+            return { ok: res.ok && json && json.ok, json: json, status: res.status };
+          }).catch(function () {
+            return { ok: false, json: null, status: res.status };
+          });
+        })
+        .then(function (result) {
+          if (result.ok) {
+            leadForm.classList.add("is-sent");
+            return;
+          }
+          var msg = (result.json && result.json.error)
+            ? result.json.error
+            : "Не удалось отправить. Напишите на zakaz@1c-center.net";
+          leadError.textContent = msg;
+          leadForm.classList.add("is-error");
+        })
+        .catch(function () {
+          leadError.textContent = "Ошибка сети. Напишите на zakaz@1c-center.net или позвоните 8 800 555-62-77";
+          leadForm.classList.add("is-error");
+        })
+        .finally(function () {
+          leadForm.classList.remove("is-loading");
+          leadSubmit.textContent = "Отправить";
+        });
+    });
+
+    var phone = document.getElementById("phone");
+    phone.addEventListener("input", function () {
+      var d = this.value.replace(/\D/g, "");
+      if (d.startsWith("8")) d = "7" + d.slice(1);
+      if (d.startsWith("9")) d = "7" + d;
+      var out = "+7";
+      if (d.length > 1) out += " (" + d.slice(1, 4);
+      if (d.length >= 4) out += ") " + d.slice(4, 7);
+      if (d.length >= 7) out += "-" + d.slice(7, 9);
+      if (d.length >= 9) out += "-" + d.slice(9, 11);
+      this.value = out;
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  </script>
+
+  <script>
+    (function () {
+      var veil = document.getElementById("Veil");
+      var drawer = document.getElementById("mySidebar");
+      var search = document.getElementById("Search_menu");
+      var btnMenu = document.getElementById("btn-menu");
+      var btnSearch = document.getElementById("btn-search");
+      var btnClose = document.getElementById("btn-close-menu");
+
+      function openMenu(focusSearch) {
+        drawer.classList.add("is-open");
+        veil.classList.add("is-open");
+        drawer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        if (focusSearch) {
+          setTimeout(function () { search.focus(); }, 80);
+        }
+      }
+      function closeMenu() {
+        drawer.classList.remove("is-open");
+        veil.classList.remove("is-open");
+        drawer.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      btnMenu.addEventListener("click", function () { openMenu(false); });
+      btnSearch.addEventListener("click", function () { openMenu(true); });
+      btnClose.addEventListener("click", closeMenu);
+      veil.addEventListener("click", closeMenu);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeMenu();
+      });
+
+      // Accordion
+      document.querySelectorAll("#menu_mobile > li > .p4").forEach(function (head) {
+        head.addEventListener("click", function () {
+          head.parentElement.classList.toggle("is-open");
+        });
+        head.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            head.parentElement.classList.toggle("is-open");
+          }
+        });
+      });
+
+      // Search filter (same idea as 1c-buhgalteria filterContent)
+      function filterContent(elmnt) {
+        var val = (elmnt.value || "").trim().toUpperCase();
+        var sections = document.querySelectorAll("#menu_mobile > li");
+        sections.forEach(function (li) {
+          var links = li.querySelectorAll(".msg a");
+          var any = false;
+          links.forEach(function (a) {
+            var match = !val || (a.textContent || "").toUpperCase().indexOf(val) > -1;
+            a.classList.toggle("is-hidden", !match);
+            if (match) any = true;
+          });
+          if (!val) {
+            li.classList.remove("is-hidden");
+            return;
+          }
+          li.classList.toggle("is-hidden", !any);
+          if (any) li.classList.add("is-open");
+        });
+      }
+      search.addEventListener("input", function () { filterContent(this); });
+    })();
+  </script>
+
+</body>
+</html>
