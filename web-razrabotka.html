@@ -960,11 +960,39 @@
       .col--left { gap: var(--gap); }
     }
     @media (max-width: 960px) {
+      .board {margin-top: 10px;}
       .services { grid-template-columns: 1fr 1fr; }
       .process { grid-template-columns: 1fr 1fr; }
       .proof, .cta { grid-template-columns: 1fr; }
-      .topbar { grid-template-columns: 1fr auto; }
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 150;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding-left: max(14px, env(safe-area-inset-left));
+        padding-right: max(14px, env(safe-area-inset-right));
+        padding-top: env(safe-area-inset-top);
+        box-sizing: border-box;
+        background: rgba(243, 243, 243, 0.94);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      }
+      .topbar {
+        grid-template-columns: 1fr auto;
+        padding: 12px 0;
+        min-height: 52px;
+      }
       .topbar__nav { display: none; }
+      .brand__name { font-size: 18px; }
+      body {
+        padding-top: calc(64px + env(safe-area-inset-top));
+      }
       .board__grid { grid-template-columns: 1fr; }
       .col--right { grid-template-columns: 1fr; }
       .footer__grid { grid-template-columns: 1fr 1fr; }
@@ -977,6 +1005,9 @@
       .feed__thumb { width: 96px; height: 68px; }
       .feed__feature-media { height: 160px; }
       .footer__grid { grid-template-columns: 1fr; }
+      body {
+        padding-top: calc(58px + env(safe-area-inset-top));
+      }
     }
 
     /* —— Menu drawer + search (from 1C page) —— */
@@ -1205,9 +1236,9 @@
     </div>
   </aside>
 
-  <div class="wrap">
+  <div class="wrap site-header" id="top">
     <header class="topbar">
-      <a class="brand" href="#top" id="top">
+      <a class="brand" href="#top">
         <span class="brand__name">1С-Центр</span>
       </a>
       <nav class="topbar__nav" aria-label="Разделы">
