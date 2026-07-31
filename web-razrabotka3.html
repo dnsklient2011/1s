@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Веб-разработка — сайты, лендинги и интернет-магазины | 1С-Центр</title>
+  <meta name="description" content="Разработка сайтов, лендингов и интернет-магазинов под ключ. Интеграция с 1С, быстрый запуск, поддержка. Бесплатная консультация — 8 800 555-62-77." />
+  <link rel="shortcut icon" href="https://1c-center.net/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #111111;
+      --bg-elev: #1a1a1a;
+      --card: #ffffff;
+      --card-soft: #f2f2f7;
+      --form-bg: #ebe8f8;
+      --purple: #6c3ce1;
+      --purple-deep: #5a2fd0;
+      --purple-soft: #dcd4ff;
+      --ink: #111;
+      --muted: #6b6b76;
+      --muted-on-dark: rgba(255,255,255,.62);
+      --line: rgba(255,255,255,.08);
+      --radius: 32px;
+      --radius-sm: 20px;
+      --radius-xs: 14px;
+      --max: 1080px;
+      --font: "Golos Text", system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: #fff;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 100px;
+    }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea, select { font: inherit; }
+    .wrap { width: min(100% - 32px, var(--max)); margin-inline: auto; }
+
+    /* Nav */
+    .topbar {
+      position: sticky; top: 0; z-index: 150;
+      background: rgba(17,17,17,.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar__inner {
+      display: flex; align-items: center; gap: 16px;
+      min-height: 64px; padding: 10px 0;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      text-decoration: none; font-weight: 700; font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+    .brand__mark {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: linear-gradient(145deg, #8b5cf6, #6c3ce1);
+      display: grid; place-items: center; font-size: 13px; font-weight: 800;
+    }
+    .topbar__nav {
+      display: flex; gap: 4px; margin-left: 12px; flex: 1;
+    }
+    .topbar__nav a {
+      text-decoration: none; padding: 8px 12px; border-radius: 999px;
+      font-size: 14px; font-weight: 500; color: var(--muted-on-dark);
+    }
+    .topbar__nav a:hover { color: #fff; background: rgba(255,255,255,.06); }
+    .topbar__actions {
+      display: flex; align-items: center; gap: 8px; margin-left: auto;
+    }
+    .topbar__phones {
+      display: flex; flex-direction: column; align-items: flex-end;
+      line-height: 1.2; margin-right: 4px;
+    }
+    .topbar__phones a {
+      text-decoration: none; font-size: 12px; font-weight: 600; color: #fff;
+    }
+    .topbar__phones a:hover { color: var(--purple-soft); }
+    .icon-btn {
+      width: 40px; height: 40px; border: 0; border-radius: 12px;
+      background: rgba(255,255,255,.06); color: #fff; cursor: pointer;
+      display: grid; place-items: center;
+    }
+    .icon-btn:hover { background: rgba(255,255,255,.1); }
+    .icon-btn svg { width: 18px; height: 18px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 0; border-radius: 999px; padding: 14px 28px;
+      font-weight: 600; font-size: 16px; text-decoration: none; cursor: pointer;
+      transition: transform .15s ease, filter .15s ease, background .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn--white { background: #fff; color: #111; }
+    .btn--white:hover { filter: brightness(.96); }
+    .btn--purple { background: var(--purple); color: #fff; }
+    .btn--purple:hover { background: var(--purple-deep); }
+    .btn--ghost {
+      background: transparent; color: #fff;
+      border: 1px solid rgba(255,255,255,.22);
+    }
+    .btn--sm { padding: 10px 18px; font-size: 14px; }
+
+    /* Hero */
+    .hero { padding: 48px 0 24px; }
+    .hero__grid {
+      display: grid; grid-template-columns: 1.05fr .95fr;
+      gap: 28px; align-items: center;
+    }
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(108,60,225,.18); color: var(--purple-soft);
+      font-size: 13px; font-weight: 600; margin-bottom: 22px;
+    }
+    .hero h1 {
+      margin: 0 0 18px;
+      max-width: 14ch;
+      font-size: clamp(36px, 5.5vw, 58px);
+      line-height: 1.08; font-weight: 800; letter-spacing: -0.035em;
+    }
+    .hero__lead {
+      margin: 0 0 28px;
+      max-width: 40ch;
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--muted-on-dark); font-weight: 400;
+    }
+    .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero__visual {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #0a0a0b;
+      aspect-ratio: 1080 / 705;
+    }
+    .hero__visual img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* Islands */
+    .island {
+      background: var(--card); color: var(--ink);
+      border-radius: var(--radius);
+      padding: clamp(28px, 4vw, 48px);
+      margin: 16px auto;
+      width: min(100% - 32px, var(--max));
+    }
+    .island h2 {
+      margin: 0 0 24px;
+      font-size: clamp(26px, 3.5vw, 36px);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.15;
+    }
+    .island--purple {
+      background-color: #7D32FF;
+      background-image: url("images/yandex-metrica/banner-desktop.jpg");
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: auto 100%;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+      min-height: 220px;
+    }
+    .island--visual {
+      padding: 0;
+      overflow: hidden;
+      background: #0a0a0b;
+    }
+    .island--visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .island--form {
+      background: var(--form-bg);
+      scroll-margin-top: 80px;
+    }
+    .island--dark {
+      background: var(--bg-elev); color: #fff;
+    }
+
+    .features {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    }
+    .feature {
+      background: var(--card-soft);
+      border-radius: var(--radius-sm);
+      padding: 22px 20px 24px;
+    }
+    .feature__icon {
+      width: 56px; height: 56px; margin-bottom: 16px;
+    }
+    .feature__icon img {
+      width: 56px; height: 56px; display: block;
+    }
+    .feature h3 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
+    .feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .banner {
+      display: grid; grid-template-columns: .85fr 1.15fr; gap: 28px; align-items: center;
+      min-height: 180px;
+    }
+    .banner h2 { margin: 0; max-width: 14ch; }
+    .banner p { margin: 0; font-size: 16px; color: rgba(255,255,255,.92); max-width: 36ch; margin-left: auto; }
+    .banner__spacer { min-height: 1px; }
+
+    .steps { display: grid; gap: 12px; }
+    .step {
+      display: grid; grid-template-columns: 40px 1fr; gap: 16px;
+      align-items: start; background: var(--card-soft);
+      border-radius: var(--radius-sm); padding: 18px 20px;
+    }
+    .step__n {
+      width: 40px; height: 40px; border-radius: 0;
+      background: transparent; padding: 0;
+    }
+    .step__n img { width: 40px; height: 40px; display: block; }
+    .step h3 { margin: 0 0 4px; font-size: 17px; font-weight: 700; }
+    .step p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+    .team {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    }
+    .team__card {
+      background: var(--card-soft); border-radius: var(--radius-sm);
+      padding: 18px 14px; text-align: center;
+    }
+    .team__card img {
+      width: 72px; height: 72px; object-fit: cover; border-radius: 18px;
+      margin: 0 auto 12px; background: #e8e8ee;
+    }
+    .team__card strong { display: block; font-size: 15px; font-weight: 700; }
+    .team__card span { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+    .proof-list {
+      list-style: none; margin: 0; padding: 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px;
+    }
+    .proof-list li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-weight: 600; font-size: 15px;
+    }
+    .proof-list li::before {
+      content: ""; flex: 0 0 22px; height: 22px; margin-top: 1px;
+      border-radius: 8px;
+      background: linear-gradient(145deg, #8b5cf6, #6c3ce1)
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E")
+        center/14px no-repeat;
+    }
+
+    /* Form */
+    .form-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
+    }
+    .form-wrap__lead { margin: 0 0 16px; color: var(--muted); font-size: 15px; }
+    .form-wrap__note {
+      margin: 18px 0 0; font-size: 13px; color: var(--muted); max-width: 36ch;
+    }
+    .contacts { display: grid; gap: 14px; margin-top: 20px; }
+    .contacts__label {
+      font-size: 11px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+    }
+    .contacts__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+    .contacts__list a { text-decoration: none; font-weight: 600; color: var(--ink); }
+    .contacts__list a:hover { color: var(--purple); }
+    .contacts__list span {
+      display: inline-block; min-width: 88px; color: var(--muted);
+      font-weight: 500; font-size: 13px; margin-right: 6px;
+    }
+
+    .form {
+      background: #fff; border-radius: var(--radius-sm); padding: 24px;
+      box-shadow: 0 10px 40px rgba(70,40,160,.08);
+    }
+    .form h3 { margin: 0 0 16px; font-size: 20px; font-weight: 700; color: var(--ink); }
+    .field { display: grid; gap: 6px; margin-bottom: 12px; }
+    .field label { font-size: 13px; font-weight: 600; color: #333; }
+    .field input, .field textarea, .field select {
+      width: 100%; border: 1px solid #e0dceb; border-radius: 12px;
+      padding: 12px 14px; background: #faf9fd; outline: none; color: var(--ink);
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(108,60,225,.18);
+      background: #fff;
+    }
+    .field textarea { min-height: 92px; resize: vertical; }
+    .form__ok, .form__err {
+      display: none; margin-top: 12px; padding: 12px 14px;
+      border-radius: 12px; font-weight: 600; font-size: 14px;
+    }
+    .form__ok { background: #e8f8ef; color: #0f6b3d; }
+    .form__err { background: #ffe8e8; color: #9a1f1f; }
+    .form.is-sent .form__ok { display: block; }
+    .form.is-sent .form__fields { display: none; }
+    .form.is-error .form__err { display: block; }
+    .form.is-loading .btn { opacity: .7; pointer-events: none; }
+    .hp {
+      position: absolute !important; left: -9999px !important;
+      width: 1px !important; height: 1px !important; overflow: hidden !important;
+      opacity: 0 !important; pointer-events: none !important;
+    }
+
+    footer {
+      padding: 40px 0 24px; color: var(--muted-on-dark); text-align: center;
+    }
+    .footer__brand {
+      margin: 0 0 8px; color: #fff; font-weight: 700; font-size: 18px;
+    }
+    .footer__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      text-align: left; margin: 24px auto 0; width: min(100% - 32px, var(--max));
+    }
+    .footer__title {
+      margin: 0 0 8px; font-size: 11px; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.4);
+    }
+    .footer__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+    .footer__list a { color: #fff; text-decoration: none; font-weight: 500; font-size: 14px; }
+    .footer__list a:hover { color: var(--purple-soft); }
+    .footer__list span { display: block; font-size: 12px; color: rgba(255,255,255,.4); }
+    .footer__copy { margin: 28px 0 0; font-size: 13px; }
+
+    /* Drawer */
+    .veil {
+      position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,.5);
+      display: none; border: 0; padding: 0; cursor: pointer;
+    }
+    .veil.is-open { display: block; }
+    .drawer {
+      position: fixed; top: 0; right: 0; z-index: 210;
+      width: min(420px, 92vw); height: 100%; background: #16161a; color: #fff;
+      transform: translateX(105%); transition: transform .28s ease;
+      display: flex; flex-direction: column;
+      box-shadow: -20px 0 50px rgba(0,0,0,.35);
+    }
+    .drawer.is-open { transform: translateX(0); }
+    .drawer__head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 18px; border-bottom: 1px solid var(--line);
+    }
+    .drawer__title { margin: 0; font-size: 18px; font-weight: 700; }
+    .drawer__close {
+      width: 40px; height: 40px; border: 0; border-radius: 12px;
+      background: rgba(255,255,255,.06); color: #fff; font-size: 22px; cursor: pointer;
+    }
+    .drawer__search { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+    .drawer__search input {
+      width: 100%; border: 0; border-radius: 12px; padding: 12px 14px;
+      background: rgba(255,255,255,.08); color: #fff; outline: none;
+    }
+    .drawer__search input:focus { box-shadow: 0 0 0 2px rgba(108,60,225,.5); }
+    .drawer__body { overflow: auto; flex: 1; padding: 8px 0 28px; }
+    #menu_mobile { list-style: none; margin: 0; padding: 0; }
+    #menu_mobile > li { border-bottom: 1px solid var(--line); }
+    #menu_mobile .p4 {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; padding: 14px 18px; font-weight: 600; font-size: 14px; cursor: pointer;
+    }
+    #menu_mobile .p4::after {
+      content: ""; width: 8px; height: 8px;
+      border-right: 2px solid rgba(255,255,255,.5);
+      border-bottom: 2px solid rgba(255,255,255,.5);
+      transform: rotate(45deg); margin-top: -4px;
+    }
+    #menu_mobile > li.is-open .p4::after { transform: rotate(-135deg); margin-top: 4px; }
+    #menu_mobile .msg { display: none; padding: 0 10px 12px; }
+    #menu_mobile > li.is-open .msg { display: block; }
+    #menu_mobile .msg a {
+      display: block; padding: 10px 12px; margin: 2px 0; border-radius: 10px;
+      text-decoration: none; color: rgba(255,255,255,.8); font-size: 13.5px;
+      background: rgba(255,255,255,.04);
+    }
+    #menu_mobile .msg a:hover { background: rgba(108,60,225,.28); color: #fff; }
+    #menu_mobile > li.is-hidden, #menu_mobile .msg a.is-hidden { display: none; }
+
+    .fab-dock {
+      position: fixed; right: max(14px, env(safe-area-inset-right));
+      bottom: max(14px, env(safe-area-inset-bottom)); z-index: 120;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .fab {
+      width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+      color: #fff; text-decoration: none; box-shadow: 0 10px 28px rgba(0,0,0,.3);
+      transition: transform .18s ease;
+    }
+    .fab:hover { transform: translateY(-2px) scale(1.04); }
+    .fab svg { width: 26px; height: 26px; fill: currentColor; }
+    .fab--wa { background: #25d366; }
+    .fab--tg { background: #2aabee; }
+    .fab--max { background: #7b61ff; }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.is-in { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .topbar__nav, .topbar__phones { display: none; }
+      .features { grid-template-columns: 1fr; }
+      .banner, .form-wrap, .footer__grid, .proof-list, .hero__grid { grid-template-columns: 1fr; }
+      .team { grid-template-columns: 1fr 1fr; }
+      .topbar { position: fixed; left: 0; right: 0; }
+      body { padding-top: 64px; }
+      .hero { padding-top: 36px; }
+      .hero__visual { order: -1; max-width: 420px; }
+      .island--purple {
+        background-image: url("images/yandex-metrica/banner-mobile.jpg");
+        background-position: right bottom;
+        background-size: min(220px, 55%) auto;
+      }
+      .banner p { margin-left: 0; max-width: none; }
+      .banner h2 { max-width: none; }
+    }
+    @media (max-width: 560px) {
+      .team, .footer__grid { grid-template-columns: 1fr; }
+      .btn--sm.topbar-cta { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <button type="button" class="veil" id="Veil" aria-label="Закрыть меню"></button>
+  <aside class="drawer" id="mySidebar" aria-hidden="true" aria-label="Меню сайта">
+    <div class="drawer__head">
+      <h2 class="drawer__title">Меню</h2>
+      <button type="button" class="drawer__close" id="btn-close-menu" aria-label="Закрыть">&times;</button>
+    </div>
+    <div class="drawer__search">
+      <input type="search" id="Search_menu" placeholder="Поиск по разделам 1С..." autocomplete="off" />
+    </div>
+    <div class="drawer__body">
+      <ul id="menu_mobile">
+
+
+                <li class="is-open">
+                  <div class="p4" role="button" tabindex="0">Программы 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/software-1c_business1c_business1c.html">- 1С для Бизнеса</a> <a class="drawer__link" href="https://1c-center.net/software-1c_gosuch1c_gosuch1c.html">- 1С для Госучреждений</a> <a class="drawer__link" href="https://1c-center.net/software-1c_platform.html">- Технологическая платформа 1С</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Отраслевые решения 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/otrasli_transport_transport.html">Автотранспорт</a> <a class="drawer__link" href="https://1c-center.net/otrasli_autoservice_autoservice.html">Автосервис</a> <a class="drawer__link" href="https://1c-center.net/otrasli_glonass-gps_glonass-gps.html">ГЛОНАСС-GPS</a> <a class="drawer__link" href="https://1c-center.net/otrasli_gkh_gkh.html">ЖКХ, ТСЖ, ЖСК</a> <a class="drawer__link" href="https://1c-center.net/otrasli_izdpol_izdpol.html">Издательство, полиграфия</a> <a class="drawer__link" href="https://1c-center.net/otrasli_culture_culture.html">Культура</a> <a class="drawer__link" href="https://1c-center.net/otrasli_Logistica_Logistica.html">Логистика</a> <a class="drawer__link" href="https://1c-center.net/otrasli_med_med.html">Медицина</a> <a class="drawer__link" href="https://1c-center.net/otrasli_esteblish_esteblish.html">Недвижимость</a> <a class="drawer__link" href="https://1c-center.net/otrasli_non-commercial_non-commercial.html">Некоммерческие организации</a> <a class="drawer__link" href="https://1c-center.net/otrasli_education_education.html">Образование</a> <a class="drawer__link" href="https://1c-center.net/otrasli_foodprom_foodprom.html">Пищевая промышленность</a> <a class="drawer__link" href="https://1c-center.net/otrasli_manufacture_manufacture.html">Промышленное производство</a> <a class="drawer__link" href="https://1c-center.net/otrasli_agrofor_agrofor.html">Сельское и лесное хозяйство</a> <a class="drawer__link" href="https://1c-center.net/otrasli_insurance_insurance.html">Страхование</a> <a class="drawer__link" href="https://1c-center.net/otrasli_building_building.html">Строительство</a> <a class="drawer__link" href="https://1c-center.net/otrasli_vodosnab_vodosnab.html">ВОДОСНАБЖЕНИЕ</a> <a class="drawer__link" href="https://1c-center.net/otrasli_vodosnab_teploceti.html">ТЕПЛОСЕТИ</a> <a class="drawer__link" href="https://1c-center.net/otrasli_trade_trade.html">Торговля</a> <a class="drawer__link" href="https://1c-center.net/otrasli_energy-soft_energy-soft1c.html">Энергетика</a> <a class="drawer__link" href="https://1c-center.net/otrasli_crm_crm.html">CRM</a> <a class="drawer__link" href="https://1c-center.net/otrasli_service_uslugi.html">Услуги (бытовые)</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">1С Предприятие 7.7</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/1С77_buh77.html">1С Бухгалтперия 7.7</a> <a class="drawer__link" href="https://1c-center.net/1С77_zik77.html">1С Зарплата и кадры 7.7</a> <a class="drawer__link" href="https://1c-center.net/1С77_trade77.html">1С Торговля и склад 7.7</a> <a class="drawer__link" href="https://1c-center.net/1С77_complex77.html">1С Комплексная 7.7</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Сервисы 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/services_otchetnost.html">1С-Отчетность</a> <a class="drawer__link" href="https://1c-center.net/services_kontragent.html">1С-Контрагент</a> <a class="drawer__link" href="https://1c-center.net/services_autoupdate.html">Обновление 1С</a> <a class="drawer__link" href="https://1c-center.net/services_edo.html">1С-ЭДО</a> <a class="drawer__link" href="https://1c-center.net/services_link.html">1С-Линк</a> <a class="drawer__link" href="https://1c-center.net/services_info_its.html">1С-ИТС (Информационная система 1С:ИТС)</a> <a class="drawer__link" href="https://1c-center.net/services_kp_prof.html">КП (Комплект поддержки) - Комлпект сервисов 1С</a> <a class="drawer__link" href="https://1c-center.net/services_fresh.html">1С-Фреш (1С в Облаке) через Интернет.</a> <a class="drawer__link" href="https://1c-center.net/services_lk-employee.html">1С Кабинет сотрудника</a> <a class="drawer__link" href="https://1c-center.net/services_doc-recognition.html">1С Распознавание первичных документов</a> <a class="drawer__link" href="https://1c-center.net/services_park.html">1С-ПАРК Риски</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Обновление 1С и ИТС</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/update_its-techno.html">Автоматическое через интернет</a> <a class="drawer__link" href="https://1c-center.net/update_its-prof.html">- ИТС-ПРОФ</a> <a class="drawer__link" href="https://1c-center.net/update_its-techno.html">- ИТС-ТЕХНО</a> <a class="drawer__link" href="https://1c-center.net/update_its-budget.html">- ИТС-Бюджет</a> <a class="drawer__link" href="https://1c-center.net/update_its-medicine.html">- ИТС-Медицина</a> <a class="drawer__link" href="https://1c-center.net/update_its-building.html">- ИТС-Строительство</a> <a class="drawer__link" href="https://1c-center.net/update_its-otrasli.html">- ИТС-Отраслевой</a> <a class="drawer__link" href="https://1c-center.net/update_update1c.html">Настроенных конфигураций</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Услуги по 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/support-1c_vnedrenie1c.html">Внедрение 1С</a> <a class="drawer__link" href="https://1c-center.net/support-1c_install1c.html">Установка и настройка 1С</a> <a class="drawer__link" href="https://1c-center.net/support-1c_1c-consulting.html">Консультационные услуги по 1С</a> <a class="drawer__link" href="https://1c-center.net/support-1c_nastr-adfunctions.html">Настройка доп. функционала</a> <a class="drawer__link" href="https://1c-center.net/support-1c_biz-processing.html">Описание Бизнесс-процессов</a> <a class="drawer__link" href="https://1c-center.net/support-1c_abonentka.html">Сопровождение по 1С</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Интеграция 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/integration-1c_ko.html">с Кассовым оборудованием</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_site.html">с Интергнет-магазином</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_1c-telefone.html">с Телефонией</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_1c-billing.html">Биллинговые системы</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_crm-systems.html">CRM системы</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_1c-cms.html">CMS в 1С</a> 
+                  </div>
+                </li>
+      
+      
+      </ul>
+    </div>
+  </aside>
+
+  <header class="topbar" id="top">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="#top">
+        <span class="brand__mark" aria-hidden="true">1С</span>
+        <span>1С-Центр</span>
+      </a>
+      <nav class="topbar__nav" aria-label="Разделы">
+        <a href="#services">Что делаем</a>
+        <a href="#who">Кому подходит</a>
+        <a href="#process">Как работает</a>
+        <a href="#form__wrap">Заявка</a>
+      </nav>
+      <div class="topbar__actions">
+        <div class="topbar__phones">
+          <a href="tel:88005556277">8 800 555-62-77</a>
+          <a href="tel:88005554540">8 800 555-45-40</a>
+        </div>
+        <button type="button" class="icon-btn" id="btn-search" title="Поиск" aria-label="Поиск по меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="btn-menu" title="Меню" aria-label="Открыть меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a class="btn btn--white btn--sm topbar-cta" href="#form__wrap">Оставить заявку</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <div class="hero__badge">Веб-разработка · интеграция с 1С</div>
+        <h1>Сайты, которые приводят клиентов</h1>
+        <p class="hero__lead">Лендинги, корпоративные сайты и интернет-магазины под ключ. Интеграция с 1С, быстрый запуск и поддержка после публикации.</p>
+        <div class="hero__cta">
+          <a class="btn btn--white" href="#form__wrap">Оставить заявку</a>
+          <a class="btn btn--ghost" href="#services">Что мы делаем</a>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <img src="images/yandex-metrica/hero-3d.jpg" alt="" width="1080" height="705" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section class="island reveal" id="services">
+    <h2>Что мы делаем</h2>
+    <div class="features">
+      <article class="feature">
+        <div class="feature__icon" aria-hidden="true">
+          <img src="images/yandex-metrica/icon-chart.svg" alt="" width="56" height="56" />
+        </div>
+        <h3>Лендинги</h3>
+        <p>Продающие страницы под рекламу: ясный оффер, формы заявок, аналитика и быстрая загрузка.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon" aria-hidden="true">
+          <img src="images/yandex-metrica/icon-users.svg" alt="" width="56" height="56" />
+        </div>
+        <h3>Корпоративные сайты</h3>
+        <p>Витрина компании: услуги, кейсы, команда и удобная админка для самостоятельных правок.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon" aria-hidden="true">
+          <img src="images/yandex-metrica/icon-goals.svg" alt="" width="56" height="56" />
+        </div>
+        <h3>Интернет-магазины</h3>
+        <p>Каталог, корзина, оплата и доставка. Обмен заказами и остатками с 1С без ручной работы.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon" aria-hidden="true">
+          <img src="images/yandex-metrica/icon-chart.svg" alt="" width="56" height="56" />
+        </div>
+        <h3>Интеграция с 1С</h3>
+        <p>Синхронизация товаров, цен, контрагентов и документов — сайт и учёт работают вместе.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon" aria-hidden="true">
+          <img src="images/yandex-metrica/icon-users.svg" alt="" width="56" height="56" />
+        </div>
+        <h3>Редизайн и ускорение</h3>
+        <p>Обновляем устаревший сайт: скорость, мобильная версия, современный UI и SEO-база.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon" aria-hidden="true">
+          <img src="images/yandex-metrica/icon-goals.svg" alt="" width="56" height="56" />
+        </div>
+        <h3>Поддержка</h3>
+        <p>Правки, контент, мониторинг и развитие после запуска — без сюрпризов по срокам.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="island island--purple reveal" id="who">
+    <div class="banner">
+      <div class="banner__spacer" aria-hidden="true"></div>
+      <div>
+        <h2>Кому подходит веб-разработка с 1С-Центром?</h2>
+        <p style="margin-top:14px">Владельцам бизнеса, которым нужен сайт не как визитка, а как канал заявок и продаж — с понятными сроками, интеграцией 1С и поддержкой после запуска.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="island reveal" id="process">
+    <h2>Как это работает</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step__n" aria-hidden="true">
+          <img src="images/yandex-metrica/step-1.svg" alt="" width="40" height="40" />
+        </div>
+        <div>
+          <h3>Бриф</h3>
+          <p>Вы оставляете заявку и кратко описываете задачу. Фиксируем цели, аудиторию, референсы и нужные интеграции.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__n" aria-hidden="true">
+          <img src="images/yandex-metrica/step-2.svg" alt="" width="40" height="40" />
+        </div>
+        <div>
+          <h3>Прототип и оценка</h3>
+          <p>Согласуем структуру, сроки и бюджет. Типовой лендинг — от 2 недель до запуска.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__n" aria-hidden="true">
+          <img src="images/yandex-metrica/step-1.svg" alt="" width="40" height="40" />
+        </div>
+        <div>
+          <h3>Разработка</h3>
+          <p>Дизайн, вёрстка, формы, аналитика и связка с 1С при необходимости — с промежуточными показами.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step__n" aria-hidden="true">
+          <img src="images/yandex-metrica/step-done.svg" alt="" width="40" height="40" />
+        </div>
+        <div>
+          <h3>Готово</h3>
+          <p>Тесты, публикация, инструкции и план поддержки. Вам остаётся принимать заявки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="island island--visual reveal" aria-hidden="true">
+    <img src="images/yandex-metrica/hero-3d-wide.jpg" alt="" width="2120" height="1296" loading="lazy" />
+  </section>
+
+  <section class="island reveal" id="team">
+    <h2>Команда проекта</h2>
+    <div class="team">
+      <div class="team__card">
+        <img src="images/team/robot-01.png" alt="" width="144" height="144" loading="lazy" />
+        <strong>Дизайн</strong><span>UX и визуал</span>
+      </div>
+      <div class="team__card">
+        <img src="images/team/robot-04.png" alt="" width="144" height="144" loading="lazy" />
+        <strong>Frontend</strong><span>Вёрстка и JS</span>
+      </div>
+      <div class="team__card">
+        <img src="images/team/robot-06.png" alt="" width="144" height="144" loading="lazy" />
+        <strong>1С</strong><span>Интеграции</span>
+      </div>
+      <div class="team__card">
+        <img src="images/team/robot-02.png" alt="" width="144" height="144" loading="lazy" />
+        <strong>Поддержка</strong><span>После запуска</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="island island--dark reveal">
+    <h2>Сайт как инструмент продаж</h2>
+    <ul class="proof-list">
+      <li>Адаптив под телефон и планшет</li>
+      <li>SEO-база и счётчики аналитики</li>
+      <li>Интеграция с 1С и CRM</li>
+      <li>Срок типового лендинга — от 2 недель</li>
+    </ul>
+  </section>
+
+  <section class="island island--form reveal" id="form__wrap">
+    <div class="form-wrap">
+      <div id="contacts">
+        <h2>Закажите оценку проекта</h2>
+        <p class="form-wrap__lead">Расскажите о задаче и особенностях бизнеса — подберём формат, сроки и ориентир по бюджету.</p>
+        <p class="form-wrap__note">*Мы всё проверим и оперативно свяжемся с вами в рабочее время. Пожалуйста, дождитесь ответа.</p>
+        <div class="contacts">
+          <div>
+            <div class="contacts__label">Телефоны</div>
+            <ul class="contacts__list">
+              <li><a href="tel:88005556277">8 800 555-62-77</a></li>
+              <li><a href="tel:88005554540">8 800 555-45-40</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="contacts__label">Email</div>
+            <ul class="contacts__list">
+              <li><a href="mailto:zakaz@1c-center.net">zakaz@1c-center.net</a></li>
+              <li><a href="mailto:1cbox@mail.ru">1cbox@mail.ru</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="contacts__label">Мессенджеры</div>
+            <ul class="contacts__list">
+              <li><span>WhatsApp</span><a href="https://wa.me/79310061188" target="_blank" rel="noopener noreferrer">+7 931 006-11-88</a></li>
+              <li><span>Telegram, Max</span><a href="tel:+79255896677">+7 925 589-66-77</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <form class="form" id="lead-form" action="send-lead.php" method="post" novalidate>
+        <h3>Оставить заявку</h3>
+        <div class="form__fields">
+          <div class="hp" aria-hidden="true">
+            <label for="company_url">Сайт компании</label>
+            <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Как к вам обращаться" />
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="+7 (___) ___-__-__" />
+          </div>
+          <div class="field">
+            <label for="type">Тип проекта</label>
+            <select id="type" name="type">
+              <option>Лендинг</option>
+              <option>Корпоративный сайт</option>
+              <option>Интернет-магазин</option>
+              <option>Интеграция с 1С</option>
+              <option>Другое</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Коротко о задаче</label>
+            <textarea id="message" name="message" placeholder="Ниша, сроки, есть ли сейчас сайт"></textarea>
+          </div>
+          <button class="btn btn--purple" type="submit" style="width:100%" id="lead-submit">Отправить</button>
+        </div>
+        <div class="form__ok" role="status">Спасибо! Заявка отправлена на zakaz@1c-center.net — мы свяжемся с вами.</div>
+        <div class="form__err" role="alert" id="lead-error"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer__brand">1С-Центр</p>
+    <div class="footer__grid">
+      <div>
+        <p class="footer__title">Телефоны</p>
+        <ul class="footer__list">
+          <li><a href="tel:88005556277">8 800 555-62-77</a></li>
+          <li><a href="tel:88005554540">8 800 555-45-40</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Email</p>
+        <ul class="footer__list">
+          <li><a href="mailto:zakaz@1c-center.net">zakaz@1c-center.net</a></li>
+          <li><a href="mailto:1cbox@mail.ru">1cbox@mail.ru</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Мессенджеры</p>
+        <ul class="footer__list">
+          <li><span>WhatsApp</span><a href="https://wa.me/79310061188" target="_blank" rel="noopener noreferrer">+7 931 006-11-88</a></li>
+          <li><span>Telegram, Max</span><a href="tel:+79255896677">+7 925 589-66-77</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer__copy">© <span id="year"></span> · веб-разработка · Москва и Московская область</p>
+  </footer>
+
+  <div class="fab-dock" aria-label="Мессенджеры">
+    <a class="fab fab--wa" href="https://wa.me/79310061188" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Написать в WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.86c0 1.94.5 3.76 1.46 5.38L2 22l4.92-1.55a9.9 9.9 0 0 0 5.12 1.4h.01c5.46 0 9.89-4.4 9.89-9.86C21.94 6.4 17.5 2 12.04 2zm0 17.96h-.01a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.05.96 1-2.97-.2-.31a8.06 8.06 0 0 1-1.24-4.3c0-4.47 3.64-8.1 8.12-8.1 2.17 0 4.21.85 5.75 2.38a8.05 8.05 0 0 1 2.37 5.73c0 4.47-3.64 8.1-8.11 8.1zm4.45-6.06c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.37-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
+    </a>
+    <a class="fab fab--tg" href="tg://resolve?phone=79255896677" title="Telegram" aria-label="Написать в Telegram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.94 4.33 18.7 19.6c-.24 1.07-.88 1.33-1.78.83l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.99.48l.35-5.03 9.15-8.27c.4-.35-.09-.55-.62-.2L6.3 13.26l-4.87-1.52c-1.06-.33-1.08-1.06.22-1.57L20.5 3.2c.88-.33 1.65.2 1.44 1.13z"/></svg>
+    </a>
+    <a class="fab fab--max" href="tel:+79255896677" title="Max" aria-label="Написать в Max">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.3 2 11.5c0 2.9 1.3 5.5 3.4 7.3V22l3.5-1.9c1 .3 2 .4 3.1.4 5.5 0 10-4.3 10-9.5S17.5 2 12 2zm4.8 7.2-6.2 5.8c-.2.2-.5.2-.7 0l-2.7-2.5c-.3-.2-.3-.6 0-.8l.7-.6c.2-.2.5-.2.7 0l1.7 1.5 5.1-4.8c.2-.2.5-.2.7 0l.7.6c.2.2.2.6 0 .8z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    var leadForm = document.getElementById("lead-form");
+    var leadSubmit = document.getElementById("lead-submit");
+    var leadError = document.getElementById("lead-error");
+
+    leadForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      leadForm.classList.remove("is-error", "is-sent");
+      leadError.textContent = "";
+      if (!leadForm.reportValidity()) return;
+      leadForm.classList.add("is-loading");
+      leadSubmit.textContent = "Отправляем…";
+      fetch(leadForm.action, {
+        method: "POST",
+        body: new FormData(leadForm),
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) {
+          return res.json().then(function (json) {
+            return { ok: res.ok && json && json.ok, json: json };
+          }).catch(function () { return { ok: false, json: null }; });
+        })
+        .then(function (result) {
+          if (result.ok) { leadForm.classList.add("is-sent"); return; }
+          leadError.textContent = (result.json && result.json.error)
+            ? result.json.error
+            : "Не удалось отправить. Напишите на zakaz@1c-center.net";
+          leadForm.classList.add("is-error");
+        })
+        .catch(function () {
+          leadError.textContent = "Ошибка сети. Напишите на zakaz@1c-center.net или позвоните 8 800 555-62-77";
+          leadForm.classList.add("is-error");
+        })
+        .finally(function () {
+          leadForm.classList.remove("is-loading");
+          leadSubmit.textContent = "Отправить";
+        });
+    });
+
+    var phone = document.getElementById("phone");
+    phone.addEventListener("input", function () {
+      var d = this.value.replace(/\D/g, "");
+      if (d.startsWith("8")) d = "7" + d.slice(1);
+      if (d.startsWith("9")) d = "7" + d;
+      var out = "+7";
+      if (d.length > 1) out += " (" + d.slice(1, 4);
+      if (d.length >= 4) out += ") " + d.slice(4, 7);
+      if (d.length >= 7) out += "-" + d.slice(7, 9);
+      if (d.length >= 9) out += "-" + d.slice(9, 11);
+      this.value = out;
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+
+    (function () {
+      var veil = document.getElementById("Veil");
+      var drawer = document.getElementById("mySidebar");
+      var search = document.getElementById("Search_menu");
+      function openMenu(focusSearch) {
+        drawer.classList.add("is-open");
+        veil.classList.add("is-open");
+        drawer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        if (focusSearch) setTimeout(function () { search.focus(); }, 80);
+      }
+      function closeMenu() {
+        drawer.classList.remove("is-open");
+        veil.classList.remove("is-open");
+        drawer.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+      document.getElementById("btn-menu").addEventListener("click", function () { openMenu(false); });
+      document.getElementById("btn-search").addEventListener("click", function () { openMenu(true); });
+      document.getElementById("btn-close-menu").addEventListener("click", closeMenu);
+      veil.addEventListener("click", closeMenu);
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+      document.querySelectorAll("#menu_mobile > li > .p4").forEach(function (head) {
+        head.addEventListener("click", function () { head.parentElement.classList.toggle("is-open"); });
+        head.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            head.parentElement.classList.toggle("is-open");
+          }
+        });
+      });
+      search.addEventListener("input", function () {
+        var val = (this.value || "").trim().toUpperCase();
+        document.querySelectorAll("#menu_mobile > li").forEach(function (li) {
+          var links = li.querySelectorAll(".msg a");
+          var any = false;
+          links.forEach(function (a) {
+            var match = !val || (a.textContent || "").toUpperCase().indexOf(val) > -1;
+            a.classList.toggle("is-hidden", !match);
+            if (match) any = true;
+          });
+          if (!val) { li.classList.remove("is-hidden"); return; }
+          li.classList.toggle("is-hidden", !any);
+          if (any) li.classList.add("is-open");
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
