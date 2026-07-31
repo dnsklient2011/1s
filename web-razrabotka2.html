@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Веб-разработка — сайты, лендинги и интернет-магазины | 1С-Центр</title>
+  <meta name="description" content="Разработка сайтов, лендингов и интернет-магазинов под ключ. Интеграция с 1С, быстрый запуск, поддержка. Бесплатная консультация — 8 800 555-62-77." />
+  <link rel="shortcut icon" href="https://1c-center.net/favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --w3-green: #04AA6D;
+      --w3-green-hover: #059862;
+      --w3-green-soft: #D9EEE1;
+      --w3-pink: #FFF4A3;
+      --w3-pink-bg: #F3ECEA;
+      --w3-yellow: #FFF4A3;
+      --w3-dark: #282A35;
+      --w3-darker: #1d2a35;
+      --w3-code-pink: #ff9999;
+      --w3-code-blue: #5fd0ff;
+      --w3-code-green: #04AA6D;
+      --ink: #000;
+      --muted: #5a5a5a;
+      --max: 1100px;
+      --font: "Source Sans 3", system-ui, sans-serif;
+      --mono: "Source Code Pro", ui-monospace, monospace;
+      --radius: 5px;
+      --radius-lg: 16px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 96px;
+    }
+    a { color: inherit; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea, select { font: inherit; }
+    .wrap { width: min(100% - 32px, var(--max)); margin-inline: auto; }
+
+    /* Topbar — W3Schools style */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 150;
+      background: #fff;
+      border-bottom: 1px solid #e7e7e7;
+    }
+    .topbar__inner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 8px 0;
+    }
+    .brand {
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+      color: var(--w3-green);
+      margin-right: 8px;
+    }
+    .topbar__nav {
+      display: flex;
+      gap: 4px;
+      flex: 1;
+    }
+    .topbar__nav a {
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .topbar__nav a:hover { background: #f1f1f1; }
+    .topbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+    .topbar__phones {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      line-height: 1.2;
+      margin-right: 6px;
+    }
+    .topbar__phones a {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--w3-dark);
+    }
+    .topbar__phones a:hover { color: var(--w3-green); }
+    .icon-btn {
+      width: 40px; height: 40px; border: 0; border-radius: 50%;
+      background: #f1f1f1; cursor: pointer; display: grid; place-items: center;
+    }
+    .icon-btn:hover { background: #e5e5e5; }
+    .icon-btn svg { width: 18px; height: 18px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 0; border-radius: 25px; padding: 12px 28px;
+      font-weight: 700; font-size: 16px; text-decoration: none; cursor: pointer;
+      transition: background .15s ease, transform .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn--green { background: var(--w3-green); color: #fff; }
+    .btn--green:hover { background: var(--w3-green-hover); }
+    .btn--yellow { background: var(--w3-yellow); color: #000; }
+    .btn--yellow:hover { filter: brightness(0.97); }
+    .btn--dark { background: var(--w3-dark); color: #fff; }
+    .btn--ghost-light {
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,.45);
+    }
+    .btn--sm { padding: 10px 18px; font-size: 14px; border-radius: 20px; }
+
+    /* Topic strip */
+    .topics {
+      background: var(--w3-dark);
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+    .topics__inner {
+      display: flex; gap: 2px; padding: 0 8px; min-height: 40px; align-items: center;
+      width: min(100%, 1400px); margin: 0 auto;
+    }
+    .topics a {
+      color: #fff; text-decoration: none; font-size: 14px; font-weight: 600;
+      padding: 10px 12px; text-transform: uppercase; letter-spacing: .02em;
+    }
+    .topics a:hover { background: #000; }
+
+    /* Hero */
+    .hero {
+      background: var(--w3-dark);
+      color: #fff;
+      padding: 56px 0 72px;
+      position: relative;
+    }
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1.2fr .9fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .hero__lead {
+      font-size: clamp(18px, 2.2vw, 22px);
+      margin: 0 0 22px;
+      max-width: 34ch;
+      color: rgba(255,255,255,.9);
+    }
+    .hero__lead strong { color: var(--w3-yellow); font-weight: 700; }
+    .hero__checks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+      margin: 0 0 28px;
+      padding: 0;
+      list-style: none;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .hero__checks li::before {
+      content: "✓ ";
+      color: var(--w3-green);
+      font-weight: 800;
+    }
+    .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-card {
+      background: #38444d;
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+    }
+    .hero-card h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      font-weight: 800;
+    }
+    .hero-card p {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,.8);
+      font-size: 15px;
+    }
+    .hero-card__stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .hero-card__stats div {
+      background: rgba(0,0,0,.2);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .hero-card__stats strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .hero-card__stats span {
+      font-size: 12px;
+      color: rgba(255,255,255,.65);
+    }
+    .hero__wave {
+      position: absolute; left: 0; right: 0; bottom: -1px; height: 48px;
+      background: var(--w3-green-soft);
+      clip-path: ellipse(70% 100% at 50% 100%);
+    }
+
+    /* Tutorial-style colored bands */
+    .band { padding: 64px 0; }
+    .band--mint { background: var(--w3-green-soft); }
+    .band--pink { background: var(--w3-pink-bg); }
+    .band--dark { background: var(--w3-dark); color: #fff; }
+    .band--yellow { background: #FFF4A3; }
+    .band--cyan { background: #96D4D4; }
+    .band--light { background: #fff; }
+    .band__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .band__grid--flip > :first-child { order: 2; }
+    .band__grid--flip > :last-child { order: 1; }
+    .band h2 {
+      margin: 0 0 10px;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+    .band .tagline {
+      margin: 0 0 22px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .band--dark .tagline { color: rgba(255,255,255,.85); }
+    .band__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+
+    .example {
+      background: #E7E9EB;
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08);
+    }
+    .band--dark .example { background: #38444d; }
+    .example__title {
+      margin: 0 0 10px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .example__code {
+      margin: 0;
+      background: #fff;
+      border-left: 4px solid var(--w3-green);
+      border-radius: 4px;
+      padding: 14px 16px;
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.55;
+      overflow-x: auto;
+      white-space: pre;
+      color: #000;
+    }
+    .band--dark .example__code {
+      background: #1d2a35;
+      color: #ddd;
+      border-left-color: var(--w3-green);
+    }
+    .tok-tag { color: #ff5555; }
+    .tok-attr { color: #ff9999; }
+    .band--dark .tok-tag { color: #ff9999; }
+    .band--dark .tok-attr { color: #5fd0ff; }
+    .tok-str { color: #04AA6D; }
+    .tok-c { color: #888; }
+
+    /* Process / team / proof as docs sections */
+    .section { padding: 56px 0; }
+    .section__head { max-width: 640px; margin-bottom: 28px; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--w3-green);
+      margin-bottom: 8px;
+    }
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .section__lead { margin: 0; color: var(--muted); font-size: 17px; font-weight: 600; }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      counter-reset: step;
+    }
+    .step {
+      background: #fff;
+      border: 1px solid #e7e7e7;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: block;
+      color: var(--w3-green);
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .step h3 { margin: 0 0 6px; font-size: 18px; font-weight: 800; }
+    .step p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .team__card {
+      background: #fff;
+      border: 1px solid #e7e7e7;
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      text-align: center;
+    }
+    .team__card img {
+      width: 88px; height: 88px; object-fit: cover;
+      border-radius: 16px; margin: 0 auto 10px;
+      background: #f1f1f1;
+    }
+    .team__card strong { display: block; font-size: 16px; font-weight: 800; }
+    .team__card span { font-size: 13px; color: var(--muted); font-weight: 600; }
+
+    .proof {
+      background: var(--w3-dark);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .proof h2 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 800;
+    }
+    .proof p { margin: 0; color: rgba(255,255,255,.78); }
+    .proof ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .proof li { font-weight: 700; }
+    .proof li::before { content: "✓ "; color: var(--w3-green); }
+
+    /* Contacts + form */
+    .cta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+    .contacts { display: grid; gap: 16px; margin-top: 18px; }
+    .contacts__label {
+      font-size: 12px; font-weight: 800; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+    }
+    .contacts__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+    .contacts__list a {
+      text-decoration: none; font-weight: 700; color: var(--ink);
+    }
+    .contacts__list a:hover { color: var(--w3-green); }
+    .contacts__list span {
+      color: var(--muted); font-weight: 600; font-size: 13px; margin-right: 6px;
+    }
+
+    .form {
+      background: #E7E9EB;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+    .form h3 { margin: 0 0 16px; font-size: 22px; font-weight: 800; }
+    .field { display: grid; gap: 6px; margin-bottom: 12px; }
+    .field label { font-size: 13px; font-weight: 700; }
+    .field input, .field textarea, .field select {
+      width: 100%; border: 1px solid #ccc; border-radius: 8px;
+      padding: 12px 14px; background: #fff; outline: none;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--w3-green);
+      box-shadow: 0 0 0 3px rgba(4,170,109,.18);
+    }
+    .field textarea { min-height: 96px; resize: vertical; }
+    .form__ok, .form__err {
+      display: none; margin-top: 12px; padding: 12px 14px;
+      border-radius: 8px; font-weight: 700; font-size: 14px;
+    }
+    .form__ok { background: var(--w3-green-soft); color: #046644; }
+    .form__err { background: #ffe5e5; color: #9a3412; }
+    .form.is-sent .form__ok { display: block; }
+    .form.is-sent .form__fields { display: none; }
+    .form.is-error .form__err { display: block; }
+    .form.is-loading .btn { opacity: .7; pointer-events: none; }
+    .hp {
+      position: absolute !important; left: -9999px !important;
+      width: 1px !important; height: 1px !important; overflow: hidden !important;
+      opacity: 0 !important; pointer-events: none !important;
+    }
+
+    footer {
+      background: var(--w3-dark);
+      color: rgba(255,255,255,.75);
+      padding: 40px 0 48px;
+      margin-top: 24px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, 1fr);
+      gap: 24px;
+    }
+    .footer__brand {
+      margin: 0 0 8px; color: var(--w3-green);
+      font-weight: 800; font-size: 22px;
+    }
+    .footer__copy { margin: 0; max-width: 28ch; font-size: 14px; }
+    .footer__title {
+      margin: 0 0 10px; font-size: 12px; font-weight: 800;
+      letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.5);
+    }
+    .footer__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+    .footer__list a { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .footer__list a:hover { color: var(--w3-green); }
+    .footer__list span { display: block; font-size: 12px; color: rgba(255,255,255,.45); margin-bottom: 1px; }
+
+    /* Drawer */
+    .veil {
+      position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,.35);
+      display: none; border: 0; padding: 0; cursor: pointer;
+    }
+    .veil.is-open { display: block; }
+    .drawer {
+      position: fixed; top: 0; right: 0; z-index: 210;
+      width: min(420px, 92vw); height: 100%; background: #111; color: #fff;
+      transform: translateX(105%); transition: transform .28s ease;
+      display: flex; flex-direction: column;
+      box-shadow: -20px 0 50px rgba(0,0,0,.25);
+    }
+    .drawer.is-open { transform: translateX(0); }
+    .drawer__head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 18px; border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .drawer__title { margin: 0; font-size: 18px; font-weight: 800; }
+    .drawer__close {
+      width: 40px; height: 40px; border: 0; border-radius: 10px;
+      background: rgba(255,255,255,.08); color: #fff; font-size: 22px; cursor: pointer;
+    }
+    .drawer__search { padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .drawer__search input {
+      width: 100%; border: 0; border-radius: 8px; padding: 12px 14px;
+      background: rgba(255,255,255,.1); color: #fff; outline: none;
+    }
+    .drawer__search input:focus { box-shadow: 0 0 0 2px rgba(4,170,109,.45); }
+    .drawer__body { overflow: auto; flex: 1; padding: 8px 0 28px; }
+    #menu_mobile { list-style: none; margin: 0; padding: 0; }
+    #menu_mobile > li { border-bottom: 1px solid rgba(255,255,255,.06); }
+    #menu_mobile .p4 {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; padding: 14px 18px; font-weight: 700; font-size: 14px; cursor: pointer;
+    }
+    #menu_mobile .p4::after {
+      content: ""; width: 8px; height: 8px;
+      border-right: 2px solid rgba(255,255,255,.55);
+      border-bottom: 2px solid rgba(255,255,255,.55);
+      transform: rotate(45deg); margin-top: -4px;
+    }
+    #menu_mobile > li.is-open .p4::after { transform: rotate(-135deg); margin-top: 4px; }
+    #menu_mobile .msg { display: none; padding: 0 10px 12px; }
+    #menu_mobile > li.is-open .msg { display: block; }
+    #menu_mobile .msg a {
+      display: block; padding: 10px 12px; margin: 2px 0; border-radius: 8px;
+      text-decoration: none; color: rgba(255,255,255,.82); font-size: 13.5px;
+      background: rgba(255,255,255,.04);
+    }
+    #menu_mobile .msg a:hover { background: rgba(4,170,109,.2); color: #fff; }
+    #menu_mobile > li.is-hidden, #menu_mobile .msg a.is-hidden { display: none; }
+
+    /* FABs */
+    .fab-dock {
+      position: fixed; right: max(14px, env(safe-area-inset-right));
+      bottom: max(14px, env(safe-area-inset-bottom)); z-index: 120;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .fab {
+      width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+      color: #fff; text-decoration: none; box-shadow: 0 10px 28px rgba(0,0,0,.22);
+      transition: transform .18s ease;
+    }
+    .fab:hover { transform: translateY(-2px) scale(1.04); }
+    .fab svg { width: 26px; height: 26px; fill: currentColor; }
+    .fab--wa { background: #25d366; }
+    .fab--tg { background: #2aabee; }
+    .fab--max { background: #7b61ff; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.is-in { opacity: 1; transform: none; }
+
+    @media (max-width: 960px) {
+      .topbar__nav, .topbar__phones { display: none; }
+      .hero__grid, .band__grid, .band__grid--flip, .cta, .proof, .footer__grid {
+        grid-template-columns: 1fr;
+      }
+      .band__grid--flip > :first-child, .band__grid--flip > :last-child { order: initial; }
+      .process, .team { grid-template-columns: 1fr 1fr; }
+      .hero__checks { grid-template-columns: 1fr; }
+      .topbar { position: fixed; left: 0; right: 0; }
+      body { padding-top: 56px; }
+    }
+    @media (max-width: 640px) {
+      .process, .team, .footer__grid { grid-template-columns: 1fr; }
+      .btn--dark.topbar-cta { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <button type="button" class="veil" id="Veil" aria-label="Закрыть меню"></button>
+  <aside class="drawer" id="mySidebar" aria-hidden="true" aria-label="Меню сайта">
+    <div class="drawer__head">
+      <h2 class="drawer__title">Меню</h2>
+      <button type="button" class="drawer__close" id="btn-close-menu" aria-label="Закрыть">&times;</button>
+    </div>
+    <div class="drawer__search">
+      <input type="search" id="Search_menu" placeholder="Поиск по разделам 1С..." autocomplete="off" />
+    </div>
+    <div class="drawer__body">
+      <ul id="menu_mobile">
+
+                <li class="is-open">
+                  <div class="p4" role="button" tabindex="0">Программы 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/software-1c_business1c_business1c.html">- 1С для Бизнеса</a> <a class="drawer__link" href="https://1c-center.net/software-1c_gosuch1c_gosuch1c.html">- 1С для Госучреждений</a> <a class="drawer__link" href="https://1c-center.net/software-1c_platform.html">- Технологическая платформа 1С</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Отраслевые решения 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/otrasli_transport_transport.html">Автотранспорт</a> <a class="drawer__link" href="https://1c-center.net/otrasli_autoservice_autoservice.html">Автосервис</a> <a class="drawer__link" href="https://1c-center.net/otrasli_glonass-gps_glonass-gps.html">ГЛОНАСС-GPS</a> <a class="drawer__link" href="https://1c-center.net/otrasli_gkh_gkh.html">ЖКХ, ТСЖ, ЖСК</a> <a class="drawer__link" href="https://1c-center.net/otrasli_izdpol_izdpol.html">Издательство, полиграфия</a> <a class="drawer__link" href="https://1c-center.net/otrasli_culture_culture.html">Культура</a> <a class="drawer__link" href="https://1c-center.net/otrasli_Logistica_Logistica.html">Логистика</a> <a class="drawer__link" href="https://1c-center.net/otrasli_med_med.html">Медицина</a> <a class="drawer__link" href="https://1c-center.net/otrasli_esteblish_esteblish.html">Недвижимость</a> <a class="drawer__link" href="https://1c-center.net/otrasli_non-commercial_non-commercial.html">Некоммерческие организации</a> <a class="drawer__link" href="https://1c-center.net/otrasli_education_education.html">Образование</a> <a class="drawer__link" href="https://1c-center.net/otrasli_foodprom_foodprom.html">Пищевая промышленность</a> <a class="drawer__link" href="https://1c-center.net/otrasli_manufacture_manufacture.html">Промышленное производство</a> <a class="drawer__link" href="https://1c-center.net/otrasli_agrofor_agrofor.html">Сельское и лесное хозяйство</a> <a class="drawer__link" href="https://1c-center.net/otrasli_insurance_insurance.html">Страхование</a> <a class="drawer__link" href="https://1c-center.net/otrasli_building_building.html">Строительство</a> <a class="drawer__link" href="https://1c-center.net/otrasli_vodosnab_vodosnab.html">ВОДОСНАБЖЕНИЕ</a> <a class="drawer__link" href="https://1c-center.net/otrasli_vodosnab_teploceti.html">ТЕПЛОСЕТИ</a> <a class="drawer__link" href="https://1c-center.net/otrasli_trade_trade.html">Торговля</a> <a class="drawer__link" href="https://1c-center.net/otrasli_energy-soft_energy-soft1c.html">Энергетика</a> <a class="drawer__link" href="https://1c-center.net/otrasli_crm_crm.html">CRM</a> <a class="drawer__link" href="https://1c-center.net/otrasli_service_uslugi.html">Услуги (бытовые)</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">1С Предприятие 7.7</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/1С77_buh77.html">1С Бухгалтперия 7.7</a> <a class="drawer__link" href="https://1c-center.net/1С77_zik77.html">1С Зарплата и кадры 7.7</a> <a class="drawer__link" href="https://1c-center.net/1С77_trade77.html">1С Торговля и склад 7.7</a> <a class="drawer__link" href="https://1c-center.net/1С77_complex77.html">1С Комплексная 7.7</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Сервисы 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/services_otchetnost.html">1С-Отчетность</a> <a class="drawer__link" href="https://1c-center.net/services_kontragent.html">1С-Контрагент</a> <a class="drawer__link" href="https://1c-center.net/services_autoupdate.html">Обновление 1С</a> <a class="drawer__link" href="https://1c-center.net/services_edo.html">1С-ЭДО</a> <a class="drawer__link" href="https://1c-center.net/services_link.html">1С-Линк</a> <a class="drawer__link" href="https://1c-center.net/services_info_its.html">1С-ИТС (Информационная система 1С:ИТС)</a> <a class="drawer__link" href="https://1c-center.net/services_kp_prof.html">КП (Комплект поддержки) - Комлпект сервисов 1С</a> <a class="drawer__link" href="https://1c-center.net/services_fresh.html">1С-Фреш (1С в Облаке) через Интернет.</a> <a class="drawer__link" href="https://1c-center.net/services_lk-employee.html">1С Кабинет сотрудника</a> <a class="drawer__link" href="https://1c-center.net/services_doc-recognition.html">1С Распознавание первичных документов</a> <a class="drawer__link" href="https://1c-center.net/services_park.html">1С-ПАРК Риски</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Обновление 1С и ИТС</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/update_its-techno.html">Автоматическое через интернет</a> <a class="drawer__link" href="https://1c-center.net/update_its-prof.html">- ИТС-ПРОФ</a> <a class="drawer__link" href="https://1c-center.net/update_its-techno.html">- ИТС-ТЕХНО</a> <a class="drawer__link" href="https://1c-center.net/update_its-budget.html">- ИТС-Бюджет</a> <a class="drawer__link" href="https://1c-center.net/update_its-medicine.html">- ИТС-Медицина</a> <a class="drawer__link" href="https://1c-center.net/update_its-building.html">- ИТС-Строительство</a> <a class="drawer__link" href="https://1c-center.net/update_its-otrasli.html">- ИТС-Отраслевой</a> <a class="drawer__link" href="https://1c-center.net/update_update1c.html">Настроенных конфигураций</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Услуги по 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/support-1c_vnedrenie1c.html">Внедрение 1С</a> <a class="drawer__link" href="https://1c-center.net/support-1c_install1c.html">Установка и настройка 1С</a> <a class="drawer__link" href="https://1c-center.net/support-1c_1c-consulting.html">Консультационные услуги по 1С</a> <a class="drawer__link" href="https://1c-center.net/support-1c_nastr-adfunctions.html">Настройка доп. функционала</a> <a class="drawer__link" href="https://1c-center.net/support-1c_biz-processing.html">Описание Бизнесс-процессов</a> <a class="drawer__link" href="https://1c-center.net/support-1c_abonentka.html">Сопровождение по 1С</a> 
+                  </div>
+                </li>
+                <li class="">
+                  <div class="p4" role="button" tabindex="0">Интеграция 1С</div>
+                  <div class="msg">
+                     <a class="drawer__link" href="https://1c-center.net/integration-1c_ko.html">с Кассовым оборудованием</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_site.html">с Интергнет-магазином</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_1c-telefone.html">с Телефонией</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_1c-billing.html">Биллинговые системы</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_crm-systems.html">CRM системы</a> <a class="drawer__link" href="https://1c-center.net/integration-1c_1c-cms.html">CMS в 1С</a> 
+                  </div>
+                </li>
+      
+      </ul>
+    </div>
+  </aside>
+
+  <header class="topbar" id="top">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="#top">1С-Центр</a>
+      <nav class="topbar__nav" aria-label="Разделы">
+        <a href="#services">Услуги</a>
+        <a href="#process">Процесс</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div class="topbar__actions">
+        <div class="topbar__phones">
+          <a href="tel:88005556277">8 800 555-62-77</a>
+          <a href="tel:88005554540">8 800 555-45-40</a>
+        </div>
+        <button type="button" class="icon-btn" id="btn-search" title="Поиск" aria-label="Поиск по меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+        <button type="button" class="icon-btn" id="btn-menu" title="Меню" aria-label="Открыть меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a class="btn btn--green btn--sm topbar-cta" href="#order">Обсудить</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="topics" aria-label="Услуги">
+    <div class="topics__inner">
+      <a href="#svc-landing">Лендинги</a>
+      <a href="#svc-corp">Сайты</a>
+      <a href="#svc-shop">Магазины</a>
+      <a href="#svc-1c">1С</a>
+      <a href="#svc-redesign">Редизайн</a>
+      <a href="#svc-support">Поддержка</a>
+      <a href="#team">Команда</a>
+      <a href="#order">Заявка</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <h1>Сайты, которые<br>приводят клиентов</h1>
+        <p class="hero__lead">Лендинги, корпоративные сайты и магазины с интеграцией 1С. <strong>От идеи до запуска.</strong></p>
+        <ul class="hero__checks">
+          <li>Адаптив под телефон и планшет</li>
+          <li>SEO-база и аналитика</li>
+          <li>Интеграция с 1С и CRM</li>
+          <li>Лендинг — от 2 недель</li>
+        </ul>
+        <div class="hero__cta">
+          <a class="btn btn--green" href="#order">Получить оценку</a>
+          <a class="btn btn--ghost-light" href="#services">Что делаем</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h2>Studio</h2>
+        <p>Типовой лендинг — от 2 недель до запуска. Четыре роли на каждый проект.</p>
+        <a class="btn btn--yellow" href="#order" style="width:100%">Оставить заявку</a>
+        <div class="hero-card__stats">
+          <div><strong>2–4</strong><span>недели до запуска</span></div>
+          <div><strong>4</strong><span>роли в команде</span></div>
+        </div>
+      </aside>
+    </div>
+    <div class="hero__wave" aria-hidden="true"></div>
+  </section>
+
+  <section class="band band--mint" id="services">
+    <div class="wrap band__grid" id="svc-landing">
+      <div class="reveal">
+        <h2>Лендинги</h2>
+        <p class="tagline">Продающие страницы под рекламу: ясный оффер, формы заявок, аналитика.</p>
+        <div class="band__actions">
+          <a class="btn btn--green" href="#order">Заказать лендинг</a>
+          <a class="btn btn--yellow" href="#process">Как идёт работа</a>
+        </div>
+      </div>
+      <div class="example reveal">
+        <div class="example__title">HTML Example:</div>
+        <pre class="example__code"><span class="tok-c">&lt;!-- оффер + форма заявки --&gt;</span>
+<span class="tok-tag">&lt;section</span> <span class="tok-attr">class</span>=<span class="tok-str">"hero"</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;h1&gt;</span>Сайты, которые продают<span class="tok-tag">&lt;/h1&gt;</span>
+  <span class="tok-tag">&lt;form</span> <span class="tok-attr">action</span>=<span class="tok-str">"/lead"</span><span class="tok-tag">&gt;</span>
+    <span class="tok-tag">&lt;input</span> <span class="tok-attr">name</span>=<span class="tok-str">"phone"</span> <span class="tok-attr">required</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;/form&gt;</span>
+<span class="tok-tag">&lt;/section&gt;</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--pink" id="svc-corp">
+    <div class="wrap band__grid band__grid--flip">
+      <div class="reveal">
+        <h2>Корпоративные<br>сайты</h2>
+        <p class="tagline">Витрина компании: услуги, кейсы, команда, удобная админка.</p>
+        <div class="band__actions">
+          <a class="btn btn--dark" href="#order">Обсудить сайт</a>
+        </div>
+      </div>
+      <div class="example reveal">
+        <div class="example__title">CSS Example:</div>
+        <pre class="example__code"><span class="tok-attr">.company-site</span> {
+  <span class="tok-attr">display</span>: <span class="tok-str">grid</span>;
+  <span class="tok-attr">gap</span>: <span class="tok-str">24px</span>;
+}
+<span class="tok-attr">.services</span> {
+  <span class="tok-attr">grid-template-columns</span>: <span class="tok-str">repeat(3, 1fr)</span>;
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dark" id="svc-shop">
+    <div class="wrap band__grid">
+      <div class="reveal">
+        <h2>Интернет-<br>магазины</h2>
+        <p class="tagline">Каталог, корзина, оплата и доставка. Обмен заказами и остатками с 1С.</p>
+        <div class="band__actions">
+          <a class="btn btn--green" href="#order">Заказать магазин</a>
+          <a class="btn btn--yellow" href="#svc-1c">Про интеграцию 1С</a>
+        </div>
+      </div>
+      <div class="example reveal">
+        <div class="example__title">JavaScript Example:</div>
+        <pre class="example__code"><span class="tok-attr">const</span> cart = {
+  items: [],
+  syncWith1C() {
+    <span class="tok-c">// остатки и заказы</span>
+    <span class="tok-attr">return</span> api.post(<span class="tok-str">"/1c/exchange"</span>, this);
+  }
+};</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--yellow" id="svc-1c">
+    <div class="wrap band__grid band__grid--flip">
+      <div class="reveal">
+        <h2>Интеграция<br>с 1С</h2>
+        <p class="tagline">Синхронизация товаров, цен, контрагентов и документов без ручной работы.</p>
+        <div class="band__actions">
+          <a class="btn btn--green" href="#order">Подключить 1С</a>
+        </div>
+      </div>
+      <div class="example reveal">
+        <div class="example__title">1C Exchange:</div>
+        <pre class="example__code">products  →  сайт
+prices    →  сайт
+orders    →  1С
+stock     ←  1С</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--cyan" id="svc-redesign">
+    <div class="wrap band__grid">
+      <div class="reveal">
+        <h2>Редизайн и<br>ускорение</h2>
+        <p class="tagline">Обновляем устаревший сайт: скорость, мобильная версия, современный UI.</p>
+        <div class="band__actions">
+          <a class="btn btn--dark" href="#order">Оценить сайт</a>
+        </div>
+      </div>
+      <div class="example reveal">
+        <div class="example__title">Performance:</div>
+        <pre class="example__code">LCP  &lt; 2.5s
+CLS  &lt; 0.1
+mobile-first layout
+SEO base + analytics</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--light" id="svc-support">
+    <div class="wrap band__grid band__grid--flip">
+      <div class="reveal">
+        <h2>Поддержка</h2>
+        <p class="tagline">Правки, контент, мониторинг и развитие после запуска.</p>
+        <div class="band__actions">
+          <a class="btn btn--green" href="#order">Обсудить задачу</a>
+        </div>
+      </div>
+      <div class="example reveal">
+        <div class="example__title">Support plan:</div>
+        <pre class="example__code">content updates
+bugfixes
+uptime checks
+feature roadmap</pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process" style="background:#f8f8f8">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div class="eyebrow">Процесс</div>
+        <h2>Как идёт работа</h2>
+        <p class="section__lead">Прозрачные этапы без сюрпризов по срокам и бюджету.</p>
+      </div>
+      <div class="process reveal">
+        <div class="step"><h3>Бриф</h3><p>Цели, аудитория, референсы и интеграции — фиксируем задачу.</p></div>
+        <div class="step"><h3>Прототип</h3><p>Структура и ключевые экраны, чтобы согласовать логику до вёрстки.</p></div>
+        <div class="step"><h3>Разработка</h3><p>Дизайн, код, формы, аналитика и связка с 1С при необходимости.</p></div>
+        <div class="step"><h3>Запуск</h3><p>Тесты, публикация, обучение и план поддержки.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="team">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <div class="eyebrow">Команда проекта</div>
+        <h2>Четыре роли на каждый запуск</h2>
+        <p class="section__lead">От макета до сопровождения.</p>
+      </div>
+      <div class="team reveal">
+        <div class="team__card">
+          <img src="images/team/robot-01.png" alt="" width="176" height="176" loading="lazy" />
+          <strong>Дизайн</strong><span>UX и визуал</span>
+        </div>
+        <div class="team__card">
+          <img src="images/team/robot-04.png" alt="" width="176" height="176" loading="lazy" />
+          <strong>Frontend</strong><span>Вёрстка и JS</span>
+        </div>
+        <div class="team__card">
+          <img src="images/team/robot-06.png" alt="" width="176" height="176" loading="lazy" />
+          <strong>1С</strong><span>Интеграции</span>
+        </div>
+        <div class="team__card">
+          <img src="images/team/robot-02.png" alt="" width="176" height="176" loading="lazy" />
+          <strong>Поддержка</strong><span>После запуска</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:#f8f8f8">
+    <div class="wrap">
+      <div class="proof reveal">
+        <div>
+          <h2>Сайт как инструмент продаж, а не просто визитка</h2>
+          <p>Собираем страницы под заявки и звонки: понятный оффер, быстрая загрузка, удобные формы.</p>
+        </div>
+        <ul>
+          <li>Адаптив под телефон и планшет</li>
+          <li>SEO-база и счётчики аналитики</li>
+          <li>Интеграция с 1С и CRM</li>
+          <li>Срок типового лендинга — от 2 недель</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="order">
+    <div class="wrap">
+      <div class="cta">
+        <div class="reveal" id="contacts">
+          <div class="eyebrow">Контакты</div>
+          <h2>Оценим ваш проект бесплатно</h2>
+          <p class="section__lead">Опишите задачу — перезвоним в рабочее время и предложим формат, сроки и ориентир по бюджету.</p>
+          <div class="contacts">
+            <div>
+              <div class="contacts__label">Телефоны</div>
+              <ul class="contacts__list">
+                <li><a href="tel:88005556277">8 800 555-62-77</a></li>
+                <li><a href="tel:88005554540">8 800 555-45-40</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="contacts__label">Email</div>
+              <ul class="contacts__list">
+                <li><a href="mailto:zakaz@1c-center.net">zakaz@1c-center.net</a></li>
+                <li><a href="mailto:1cbox@mail.ru">1cbox@mail.ru</a></li>
+              </ul>
+            </div>
+            <div>
+              <div class="contacts__label">Мессенджеры</div>
+              <ul class="contacts__list">
+                <li><span>WhatsApp</span><a href="https://wa.me/79310061188" target="_blank" rel="noopener noreferrer">+7 931 006-11-88</a></li>
+                <li><span>Telegram, Max</span><a href="tel:+79255896677">+7 925 589-66-77</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <form class="form reveal" id="lead-form" action="send-lead.php" method="post" novalidate>
+          <h3>Оставить заявку</h3>
+          <div class="form__fields">
+            <div class="hp" aria-hidden="true">
+              <label for="company_url">Сайт компании</label>
+              <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="name">Имя</label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Как к вам обращаться" />
+            </div>
+            <div class="field">
+              <label for="phone">Телефон</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="+7 (___) ___-__-__" />
+            </div>
+            <div class="field">
+              <label for="type">Тип проекта</label>
+              <select id="type" name="type">
+                <option>Лендинг</option>
+                <option>Корпоративный сайт</option>
+                <option>Интернет-магазин</option>
+                <option>Интеграция с 1С</option>
+                <option>Другое</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Коротко о задаче</label>
+              <textarea id="message" name="message" placeholder="Ниша, сроки, есть ли сейчас сайт"></textarea>
+            </div>
+            <button class="btn btn--green" type="submit" style="width:100%" id="lead-submit">Отправить</button>
+          </div>
+          <div class="form__ok" role="status">Спасибо! Заявка отправлена на zakaz@1c-center.net — мы свяжемся с вами.</div>
+          <div class="form__err" role="alert" id="lead-error"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__brand">1С-Центр</p>
+        <p class="footer__copy">© <span id="year"></span> · веб-разработка · Москва и Московская область</p>
+      </div>
+      <div>
+        <p class="footer__title">Телефоны</p>
+        <ul class="footer__list">
+          <li><a href="tel:88005556277">8 800 555-62-77</a></li>
+          <li><a href="tel:88005554540">8 800 555-45-40</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Email</p>
+        <ul class="footer__list">
+          <li><a href="mailto:zakaz@1c-center.net">zakaz@1c-center.net</a></li>
+          <li><a href="mailto:1cbox@mail.ru">1cbox@mail.ru</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer__title">Мессенджеры</p>
+        <ul class="footer__list">
+          <li><span>WhatsApp</span><a href="https://wa.me/79310061188" target="_blank" rel="noopener noreferrer">+7 931 006-11-88</a></li>
+          <li><span>Telegram, Max</span><a href="tel:+79255896677">+7 925 589-66-77</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fab-dock" aria-label="Мессенджеры">
+    <a class="fab fab--wa" href="https://wa.me/79310061188" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Написать в WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.15 6.4 2.15 11.86c0 1.94.5 3.76 1.46 5.38L2 22l4.92-1.55a9.9 9.9 0 0 0 5.12 1.4h.01c5.46 0 9.89-4.4 9.89-9.86C21.94 6.4 17.5 2 12.04 2zm0 17.96h-.01a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.05.96 1-2.97-.2-.31a8.06 8.06 0 0 1-1.24-4.3c0-4.47 3.64-8.1 8.12-8.1 2.17 0 4.21.85 5.75 2.38a8.05 8.05 0 0 1 2.37 5.73c0 4.47-3.64 8.1-8.11 8.1zm4.45-6.06c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.37-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05s.88 2.38 1 2.54c.12.16 1.73 2.64 4.2 3.7.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
+    </a>
+    <a class="fab fab--tg" href="tg://resolve?phone=79255896677" title="Telegram" aria-label="Написать в Telegram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.94 4.33 18.7 19.6c-.24 1.07-.88 1.33-1.78.83l-4.92-3.63-2.37 2.28c-.26.26-.48.48-.99.48l.35-5.03 9.15-8.27c.4-.35-.09-.55-.62-.2L6.3 13.26l-4.87-1.52c-1.06-.33-1.08-1.06.22-1.57L20.5 3.2c.88-.33 1.65.2 1.44 1.13z"/></svg>
+    </a>
+    <a class="fab fab--max" href="tel:+79255896677" title="Max" aria-label="Написать в Max">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.3 2 11.5c0 2.9 1.3 5.5 3.4 7.3V22l3.5-1.9c1 .3 2 .4 3.1.4 5.5 0 10-4.3 10-9.5S17.5 2 12 2zm4.8 7.2-6.2 5.8c-.2.2-.5.2-.7 0l-2.7-2.5c-.3-.2-.3-.6 0-.8l.7-.6c.2-.2.5-.2.7 0l1.7 1.5 5.1-4.8c.2-.2.5-.2.7 0l.7.6c.2.2.2.6 0 .8z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    var leadForm = document.getElementById("lead-form");
+    var leadSubmit = document.getElementById("lead-submit");
+    var leadError = document.getElementById("lead-error");
+
+    leadForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      leadForm.classList.remove("is-error", "is-sent");
+      leadError.textContent = "";
+      if (!leadForm.reportValidity()) return;
+      leadForm.classList.add("is-loading");
+      leadSubmit.textContent = "Отправляем…";
+      fetch(leadForm.action, {
+        method: "POST",
+        body: new FormData(leadForm),
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) {
+          return res.json().then(function (json) {
+            return { ok: res.ok && json && json.ok, json: json };
+          }).catch(function () { return { ok: false, json: null }; });
+        })
+        .then(function (result) {
+          if (result.ok) { leadForm.classList.add("is-sent"); return; }
+          leadError.textContent = (result.json && result.json.error)
+            ? result.json.error
+            : "Не удалось отправить. Напишите на zakaz@1c-center.net";
+          leadForm.classList.add("is-error");
+        })
+        .catch(function () {
+          leadError.textContent = "Ошибка сети. Напишите на zakaz@1c-center.net или позвоните 8 800 555-62-77";
+          leadForm.classList.add("is-error");
+        })
+        .finally(function () {
+          leadForm.classList.remove("is-loading");
+          leadSubmit.textContent = "Отправить";
+        });
+    });
+
+    var phone = document.getElementById("phone");
+    phone.addEventListener("input", function () {
+      var d = this.value.replace(/\D/g, "");
+      if (d.startsWith("8")) d = "7" + d.slice(1);
+      if (d.startsWith("9")) d = "7" + d;
+      var out = "+7";
+      if (d.length > 1) out += " (" + d.slice(1, 4);
+      if (d.length >= 4) out += ") " + d.slice(4, 7);
+      if (d.length >= 7) out += "-" + d.slice(7, 9);
+      if (d.length >= 9) out += "-" + d.slice(9, 11);
+      this.value = out;
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+
+    (function () {
+      var veil = document.getElementById("Veil");
+      var drawer = document.getElementById("mySidebar");
+      var search = document.getElementById("Search_menu");
+      function openMenu(focusSearch) {
+        drawer.classList.add("is-open");
+        veil.classList.add("is-open");
+        drawer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        if (focusSearch) setTimeout(function () { search.focus(); }, 80);
+      }
+      function closeMenu() {
+        drawer.classList.remove("is-open");
+        veil.classList.remove("is-open");
+        drawer.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+      document.getElementById("btn-menu").addEventListener("click", function () { openMenu(false); });
+      document.getElementById("btn-search").addEventListener("click", function () { openMenu(true); });
+      document.getElementById("btn-close-menu").addEventListener("click", closeMenu);
+      veil.addEventListener("click", closeMenu);
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
+      document.querySelectorAll("#menu_mobile > li > .p4").forEach(function (head) {
+        head.addEventListener("click", function () { head.parentElement.classList.toggle("is-open"); });
+        head.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            head.parentElement.classList.toggle("is-open");
+          }
+        });
+      });
+      search.addEventListener("input", function () {
+        var val = (this.value || "").trim().toUpperCase();
+        document.querySelectorAll("#menu_mobile > li").forEach(function (li) {
+          var links = li.querySelectorAll(".msg a");
+          var any = false;
+          links.forEach(function (a) {
+            var match = !val || (a.textContent || "").toUpperCase().indexOf(val) > -1;
+            a.classList.toggle("is-hidden", !match);
+            if (match) any = true;
+          });
+          if (!val) { li.classList.remove("is-hidden"); return; }
+          li.classList.toggle("is-hidden", !any);
+          if (any) li.classList.add("is-open");
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
