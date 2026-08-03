@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Основа — фундаменты и дома под ключ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #121416;
+      --ink-soft: #2a2e33;
+      --fog: #e8e4dc;
+      --fog-dim: rgba(232, 228, 220, 0.72);
+      --sand: #d4c4a8;
+      --amber: #d9922f;
+      --amber-deep: #b8731f;
+      --steel: #6b737c;
+      --line: rgba(232, 228, 220, 0.18);
+      --radius: 2px;
+      --font-display: "Oswald", sans-serif;
+      --font-body: "Manrope", sans-serif;
+      /* Placeholder photos — replace later */
+      --hero-img: url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2400&q=80");
+      --svc-foundation: url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80");
+      --svc-house: url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80");
+      --svc-turnkey: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80");
+      --project-1: url("https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1000&q=80");
+      --project-2: url("https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80");
+      --project-3: url("https://images.unsplash.com/photo-1600047509807-ba8f99d2cdbc?auto=format&fit=crop&w=1000&q=80");
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--fog);
+      background: var(--ink);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 2.5rem));
+      margin-inline: auto;
+    }
+
+    /* —— Header —— */
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 20;
+      padding: 1.35rem 0;
+    }
+
+    .site-header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: clamp(1.55rem, 3vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .logo span { color: var(--amber); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .phone {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      opacity: 0.92;
+    }
+
+    .phone:hover { color: var(--amber); }
+
+    /* —— Buttons —— */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.45rem;
+      border: 0;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary {
+      background: var(--amber);
+      color: var(--ink);
+    }
+
+    .btn-primary:hover { background: #e8a53a; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--fog);
+      border: 1px solid var(--line);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--sand);
+      color: #fff;
+    }
+
+    .btn-dark {
+      background: var(--ink);
+      color: var(--fog);
+    }
+
+    .btn-dark:hover { background: #000; }
+
+    /* —— Hero —— */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(180deg, rgba(18, 20, 22, 0.45) 0%, rgba(18, 20, 22, 0.55) 45%, rgba(18, 20, 22, 0.92) 100%),
+        linear-gradient(90deg, rgba(18, 20, 22, 0.75) 0%, rgba(18, 20, 22, 0.25) 55%, rgba(18, 20, 22, 0.4) 100%),
+        var(--hero-img) center / cover no-repeat;
+      transform: scale(1.04);
+      animation: hero-drift 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes hero-drift {
+      from { transform: scale(1.04) translate3d(0, 0, 0); }
+      to { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.08;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .hero-content {
+      padding: 7.5rem 0 4.5rem;
+      max-width: 38rem;
+      animation: rise 0.9s ease both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 8vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+      text-wrap: balance;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber);
+    }
+
+    .hero-lead {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--fog-dim);
+      max-width: 28rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.75rem 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      animation: rise 1.1s 0.15s ease both;
+    }
+
+    .hero-meta strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-meta span {
+      font-size: 0.82rem;
+      color: var(--steel);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* —— Sections —— */
+    section { padding: 5.5rem 0; }
+
+    .section-head {
+      max-width: 36rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.75rem;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin-bottom: 0.85rem;
+    }
+
+    .section-head p {
+      color: var(--steel);
+      font-size: 1.05rem;
+    }
+
+    /* —— Services —— */
+    .services {
+      background:
+        radial-gradient(ellipse 80% 50% at 10% 0%, rgba(217, 146, 47, 0.08), transparent 55%),
+        #16181b;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .service {
+      position: relative;
+      min-height: 28rem;
+      overflow: hidden;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.75rem;
+      transition: transform 0.45s ease;
+    }
+
+    .service:hover { transform: translateY(-4px); }
+
+    .service-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s ease;
+    }
+
+    .service:hover .service-bg { transform: scale(1.06); }
+
+    .service::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(18, 20, 22, 0.15) 0%, rgba(18, 20, 22, 0.88) 70%);
+    }
+
+    .service:nth-child(1) .service-bg { background-image: var(--svc-foundation); }
+    .service:nth-child(2) .service-bg { background-image: var(--svc-house); }
+    .service:nth-child(3) .service-bg { background-image: var(--svc-turnkey); }
+
+    .service h3 {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+
+    .service p {
+      color: var(--fog-dim);
+      font-size: 0.95rem;
+      margin-bottom: 1.1rem;
+      max-width: 18rem;
+    }
+
+    .service a {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .service a:hover { color: #fff; }
+
+    /* —— Calc —— */
+    .calc {
+      background:
+        linear-gradient(135deg, rgba(18, 20, 22, 0.88), rgba(18, 20, 22, 0.78)),
+        var(--svc-foundation) center / cover fixed;
+    }
+
+    .calc-panel {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .calc-copy .list {
+      list-style: none;
+      margin-top: 1.75rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .calc-copy .list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      color: var(--fog-dim);
+      font-size: 0.98rem;
+    }
+
+    .calc-copy .list li::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      margin-top: 0.45rem;
+      flex-shrink: 0;
+      background: var(--amber);
+    }
+
+    .calc-form {
+      background: rgba(22, 24, 27, 0.92);
+      border: 1px solid var(--line);
+      padding: 1.75rem;
+      backdrop-filter: blur(10px);
+      animation: rise 0.8s ease both;
+    }
+
+    .steps {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .steps span {
+      flex: 1;
+      height: 3px;
+      background: rgba(232, 228, 220, 0.12);
+      transition: background 0.3s ease;
+    }
+
+    .steps span.active,
+    .steps span.done { background: var(--amber); }
+
+    .step { display: none; }
+    .step.active { display: block; animation: rise 0.35s ease both; }
+
+    .step h3 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1.15rem;
+    }
+
+    .option-grid {
+      display: grid;
+      gap: 0.65rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .option-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+
+    .option {
+      appearance: none;
+      width: 100%;
+      text-align: left;
+      padding: 1rem 1.1rem;
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--fog);
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: border-color 0.2s ease, background 0.2s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .option:hover,
+    .option.selected {
+      border-color: var(--amber);
+      background: rgba(217, 146, 47, 0.1);
+    }
+
+    .field {
+      display: grid;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .field label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--line);
+      color: var(--fog);
+      border-radius: var(--radius);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .field input:focus,
+    .field select:focus { border-color: var(--amber); }
+
+    .field select option { background: var(--ink); }
+
+    .form-nav {
+      display: flex;
+      gap: 0.65rem;
+      margin-top: 0.5rem;
+    }
+
+    .form-nav .btn { flex: 1; }
+
+    .estimate {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px dashed rgba(217, 146, 47, 0.45);
+      background: rgba(217, 146, 47, 0.08);
+      font-size: 0.95rem;
+    }
+
+    .estimate strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 0.03em;
+      color: var(--amber);
+      margin-top: 0.25rem;
+    }
+
+    .thanks {
+      text-align: center;
+      padding: 2rem 0.5rem;
+    }
+
+    .thanks h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.6rem;
+    }
+
+    .thanks p { color: var(--fog-dim); }
+
+    /* —— Projects —— */
+    .projects { background: var(--ink); }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      grid-template-rows: 18rem 18rem;
+      gap: 0.75rem;
+    }
+
+    .project {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      min-height: 18rem;
+    }
+
+    .project:first-child {
+      grid-row: 1 / span 2;
+      min-height: auto;
+    }
+
+    .project-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s ease;
+    }
+
+    .project:hover .project-bg { transform: scale(1.05); }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, transparent 40%, rgba(18, 20, 22, 0.9) 100%);
+    }
+
+    .project:nth-child(1) .project-bg { background-image: var(--project-1); }
+    .project:nth-child(2) .project-bg { background-image: var(--project-2); }
+    .project:nth-child(3) .project-bg { background-image: var(--project-3); }
+    .project:nth-child(4) .project-bg {
+      background-image: var(--svc-foundation);
+    }
+
+    .project-info {
+      position: absolute;
+      left: 1.25rem;
+      right: 1.25rem;
+      bottom: 1.25rem;
+    }
+
+    .project-info small {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.3rem;
+    }
+
+    .project-info strong {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    /* —— Trust —— */
+    .trust {
+      padding: 3.5rem 0;
+      border-block: 1px solid var(--line);
+      background: #16181b;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .trust-row strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      color: var(--amber);
+      margin-bottom: 0.25rem;
+    }
+
+    .trust-row span {
+      font-size: 0.85rem;
+      color: var(--steel);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* —— CTA / Footer —— */
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: 6rem 0;
+      text-align: center;
+    }
+
+    .final-cta-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(180deg, rgba(18, 20, 22, 0.75), rgba(18, 20, 22, 0.92)),
+        var(--svc-house) center / cover no-repeat;
+    }
+
+    .final-cta h2 { margin-inline: auto; max-width: 16ch; }
+    .final-cta p {
+      color: var(--fog-dim);
+      max-width: 32rem;
+      margin: 0 auto 1.75rem;
+    }
+
+    .final-cta .hero-cta { justify-content: center; margin-bottom: 0; }
+
+    footer {
+      padding: 2rem 0 2.5rem;
+      border-top: 1px solid var(--line);
+      color: var(--steel);
+      font-size: 0.9rem;
+    }
+
+    footer .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    footer .logo { font-size: 1.2rem; color: var(--fog); }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    /* —— Responsive —— */
+    @media (max-width: 900px) {
+      .service-grid,
+      .calc-panel,
+      .trust-row { grid-template-columns: 1fr; }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+      }
+
+      .project:first-child { grid-row: auto; min-height: 22rem; }
+
+      .phone { display: none; }
+
+      .hero-content { padding-top: 6.5rem; }
+
+      .service { min-height: 22rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .hero-bg { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="#">Основа<span>.</span></a>
+      <div class="header-actions">
+        <a class="phone" href="tel:+79000000000">+7 (900) 000-00-00</a>
+        <a class="btn btn-primary" href="#calc">Рассчитать</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="hero-content">
+          <h1>Фундамент и дом <em>без сюрпризов</em></h1>
+          <p class="hero-lead">
+            Строим надёжные основания и частные дома под ключ.
+            Смета за 1 минуту — без скрытых работ и «потом доплатите».
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#calc">Рассчитать стоимость</a>
+            <a class="btn btn-ghost" href="#services">Заказать дом</a>
+          </div>
+          <div class="hero-meta">
+            <div>
+              <strong>12+</strong>
+              <span>лет на рынке</span>
+            </div>
+            <div>
+              <strong>480</strong>
+              <span>объектов сдано</span>
+            </div>
+            <div>
+              <strong>10 лет</strong>
+              <span>гарантия по договору</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Услуги</span>
+          <h2>От плиты до ключей</h2>
+          <p>Выберите задачу — подберём тип основания, материалы и сроки под ваш участок.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service">
+            <div class="service-bg" role="img" aria-label="Фото: заливка фундамента (заглушка)"></div>
+            <h3>Фундаменты</h3>
+            <p>Лента, плита, сваи и ростверк. Геология, проект и заливка «под ключ».</p>
+            <a href="#calc">Рассчитать фундамент →</a>
+          </article>
+          <article class="service">
+            <div class="service-bg" role="img" aria-label="Фото: современный дом (заглушка)"></div>
+            <h3>Дома</h3>
+            <p>Каркас, газобетон, кирпич. Типовые и индивидуальные проекты.</p>
+            <a href="#calc">Рассчитать дом →</a>
+          </article>
+          <article class="service">
+            <div class="service-bg" role="img" aria-label="Фото: строительство (заглушка)"></div>
+            <h3>Под ключ</h3>
+            <p>От разметки участка до сдачи: один подрядчик, один договор, одна смета.</p>
+            <a href="#calc">Получить смету →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc" id="calc">
+      <div class="wrap">
+        <div class="calc-panel">
+          <div class="calc-copy">
+            <span class="eyebrow">Онлайн-расчёт</span>
+            <h2>Смета за минуту</h2>
+            <p style="color: var(--fog-dim); max-width: 28rem;">
+              Как у конкурентов с калькулятором — но короче: ответьте на 4 вопроса,
+              получите ориентир по бюджету и звонок инженера.
+            </p>
+            <ul class="list">
+              <li>Предварительная смета без регистрации</li>
+              <li>Подбор типа фундамента под грунт и дом</li>
+              <li>Бесплатный выезд инженера на участок</li>
+            </ul>
+          </div>
+
+          <form class="calc-form" id="calcForm" novalidate>
+            <div class="steps" aria-hidden="true">
+              <span class="active" data-bar="0"></span>
+              <span data-bar="1"></span>
+              <span data-bar="2"></span>
+              <span data-bar="3"></span>
+            </div>
+
+            <div class="step active" data-step="0">
+              <h3>Что нужно построить?</h3>
+              <div class="option-grid">
+                <button type="button" class="option" data-key="need" data-value="foundation">Только фундамент</button>
+                <button type="button" class="option" data-key="need" data-value="house">Дом под ключ</button>
+                <button type="button" class="option" data-key="need" data-value="both">Фундамент + дом</button>
+                <button type="button" class="option" data-key="need" data-value="consult">Пока консультация</button>
+              </div>
+              <div class="form-nav">
+                <button type="button" class="btn btn-primary" data-next>Далее</button>
+              </div>
+            </div>
+
+            <div class="step" data-step="1">
+              <h3>Тип конструкции</h3>
+              <div class="option-grid cols-2" id="typeOptions">
+                <button type="button" class="option" data-key="type" data-value="strip">Ленточный</button>
+                <button type="button" class="option" data-key="type" data-value="slab">Плитный</button>
+                <button type="button" class="option" data-key="type" data-value="pile">Свайный</button>
+                <button type="button" class="option" data-key="type" data-value="unknown">Не знаю — подскажите</button>
+              </div>
+              <div class="form-nav">
+                <button type="button" class="btn btn-ghost" data-prev>Назад</button>
+                <button type="button" class="btn btn-primary" data-next>Далее</button>
+              </div>
+            </div>
+
+            <div class="step" data-step="2">
+              <h3>Площадь и сроки</h3>
+              <div class="field">
+                <label for="area">Площадь дома, м²</label>
+                <input id="area" name="area" type="number" min="20" max="1000" placeholder="Например, 120" />
+              </div>
+              <div class="field">
+                <label for="when">Когда планируете старт</label>
+                <select id="when" name="when">
+                  <option value="asap">Как можно скорее</option>
+                  <option value="1-3">Через 1–3 месяца</option>
+                  <option value="season">В этом сезоне</option>
+                  <option value="plan">Пока прикидываю бюджет</option>
+                </select>
+              </div>
+              <div class="estimate" id="estimateBox" hidden>
+                Ориентировочный бюджет
+                <strong id="estimateValue">—</strong>
+              </div>
+              <div class="form-nav">
+                <button type="button" class="btn btn-ghost" data-prev>Назад</button>
+                <button type="button" class="btn btn-primary" data-next>Далее</button>
+              </div>
+            </div>
+
+            <div class="step" data-step="3">
+              <h3>Куда прислать расчёт</h3>
+              <div class="field">
+                <label for="name">Имя</label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required />
+              </div>
+              <div class="field">
+                <label for="phone">Телефон</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required />
+              </div>
+              <div class="form-nav">
+                <button type="button" class="btn btn-ghost" data-prev>Назад</button>
+                <button type="submit" class="btn btn-primary">Получить расчёт</button>
+              </div>
+              <p class="note">Макет: заявка никуда не уходит. Картинки и тексты легко заменить.</p>
+            </div>
+
+            <div class="step" data-step="4">
+              <div class="thanks">
+                <h3>Заявка принята</h3>
+                <p>Инженер перезвонит в течение рабочего дня и уточнит детали сметы.</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Объекты</span>
+          <h2>Недавние проекты</h2>
+          <p>Заглушки с Unsplash — потом подставите свои фото готовых фундаментов и домов.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project">
+            <div class="project-bg"></div>
+            <div class="project-info">
+              <small>Дом 164 м²</small>
+              <strong>Газобетон + плита</strong>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project-bg"></div>
+            <div class="project-info">
+              <small>Фундамент</small>
+              <strong>Сваи с ростверком</strong>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project-bg"></div>
+            <div class="project-info">
+              <small>Каркас 98 м²</small>
+              <strong>Под ключ за сезон</strong>
+            </div>
+          </article>
+          <article class="project">
+            <div class="project-bg"></div>
+            <div class="project-info">
+              <small>Лента МЗЛФ</small>
+              <strong>Участок со склоном</strong>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust">
+      <div class="wrap trust-row">
+        <div><strong>СРО</strong><span>членство и допуски</span></div>
+        <div><strong>Геология</strong><span>перед стартом работ</span></div>
+        <div><strong>Фикс</strong><span>смета в договоре</span></div>
+        <div><strong>10 лет</strong><span>гарантия на основание</span></div>
+      </div>
+    </div>
+
+    <section class="final-cta">
+      <div class="final-cta-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <span class="eyebrow">Следующий шаг</span>
+        <h2>Готовы заказать дом или фундамент?</h2>
+        <p>Оставьте заявку на расчёт — пришлём ориентир по цене и варианты конструкции под ваш грунт.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#calc">Рассчитать стоимость</a>
+          <a class="btn btn-ghost" href="tel:+79000000000">Позвонить</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="logo" href="#">Основа<span>.</span></a>
+      <span>Макет лендинга · фундаменты и дома · фото-заглушки</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const form = document.getElementById("calcForm");
+      const steps = [...form.querySelectorAll(".step")];
+      const bars = [...form.querySelectorAll(".steps span")];
+      const state = { need: "", type: "", area: "", when: "asap" };
+      let current = 0;
+
+      const houseTypes = [
+        ["frame", "Каркасный"],
+        ["block", "Газобетон / блок"],
+        ["brick", "Кирпич"],
+        ["unknown", "Не знаю — подскажите"],
+      ];
+
+      const foundationTypes = [
+        ["strip", "Ленточный"],
+        ["slab", "Плитный"],
+        ["pile", "Свайный"],
+        ["unknown", "Не знаю — подскажите"],
+      ];
+
+      function renderTypeOptions() {
+        const box = document.getElementById("typeOptions");
+        const list = state.need === "house" ? houseTypes : foundationTypes;
+        const title = form.querySelector('[data-step="1"] h3');
+        title.textContent = state.need === "house" ? "Материал дома" : "Тип фундамента";
+        box.innerHTML = list
+          .map(
+            ([value, label]) =>
+              `<button type="button" class="option${state.type === value ? " selected" : ""}" data-key="type" data-value="${value}">${label}</button>`
+          )
+          .join("");
+      }
+
+      function estimate() {
+        const area = Number(state.area) || 100;
+        const base =
+          state.need === "foundation" ? 18000 :
+          state.need === "house" ? 65000 :
+          state.need === "both" ? 78000 : 12000;
+        const typeMul =
+          state.type === "slab" || state.type === "brick" ? 1.25 :
+          state.type === "pile" || state.type === "block" ? 1.1 :
+          state.type === "frame" ? 0.92 : 1;
+        const total = Math.round((area * base * typeMul) / 1000) * 1000;
+        const low = Math.round(total * 0.9 / 1000) * 1000;
+        const high = Math.round(total * 1.15 / 1000) * 1000;
+        return { low, high };
+      }
+
+      function showEstimate() {
+        const box = document.getElementById("estimateBox");
+        const value = document.getElementById("estimateValue");
+        if (!state.area) {
+          box.hidden = true;
+          return;
+        }
+        const { low, high } = estimate();
+        value.textContent =
+          "от " + low.toLocaleString("ru-RU") + " ₽  ·  до " + high.toLocaleString("ru-RU") + " ₽";
+        box.hidden = false;
+      }
+
+      function go(to) {
+        current = to;
+        steps.forEach((s, i) => s.classList.toggle("active", i === current));
+        bars.forEach((b, i) => {
+          b.classList.toggle("active", i === current && current < 4);
+          b.classList.toggle("done", i < current);
+        });
+        if (current === 1) renderTypeOptions();
+        if (current === 2) showEstimate();
+      }
+
+      form.addEventListener("click", (e) => {
+        const opt = e.target.closest(".option");
+        if (opt) {
+          const key = opt.dataset.key;
+          const value = opt.dataset.value;
+          state[key] = value;
+          opt.parentElement.querySelectorAll(".option").forEach((o) => o.classList.remove("selected"));
+          opt.classList.add("selected");
+          return;
+        }
+
+        if (e.target.matches("[data-next]")) {
+          if (current === 0 && !state.need) return alert("Выберите вариант");
+          if (current === 1 && !state.type) return alert("Выберите тип");
+          if (current === 2) {
+            state.area = document.getElementById("area").value;
+            state.when = document.getElementById("when").value;
+            if (!state.area) return alert("Укажите площадь");
+          }
+          go(current + 1);
+        }
+
+        if (e.target.matches("[data-prev]")) go(Math.max(0, current - 1));
+      });
+
+      document.getElementById("area").addEventListener("input", (e) => {
+        state.area = e.target.value;
+        showEstimate();
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        if (!name || !phone) return alert("Укажите имя и телефон");
+        console.log("Lead (mock):", { ...state, name, phone, estimate: estimate() });
+        go(4);
+      });
+    })();
+  </script>
+</body>
+</html>
